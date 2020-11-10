@@ -13,7 +13,7 @@ import java.sql.Statement;
 
 
 public class Conexion {
-    public static Connection conectar (){
+    public Connection conectar (){
         Connection con = null;
         
         String password = "12345";

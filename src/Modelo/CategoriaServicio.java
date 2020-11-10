@@ -1,5 +1,5 @@
 
-package Entidad;
+package Modelo;
 
 
 public class CategoriaServicio {

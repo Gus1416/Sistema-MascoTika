@@ -1,10 +1,10 @@
 
-package Entidad;
+package Modelo;
 
 
 public class Procedimiento {
     
-    private String IDProcedimiento;
+    private int IDProcedimiento;
     private String Tipo;
     private int MontoUnitario;
     private String DescripcionProcedimiento;
@@ -13,14 +13,14 @@ public class Procedimiento {
     /**
      * @return the IDProcedimiento
      */
-    public String getIDProcedimiento() {
+    public int getIDProcedimiento() {
         return IDProcedimiento;
     }
 
     /**
      * @param IDProcedimiento the IDProcedimiento to set
      */
-    public void setIDProcedimiento(String IDProcedimiento) {
+    public void setIDProcedimiento(int IDProcedimiento) {
         this.IDProcedimiento = IDProcedimiento;
     }
 
