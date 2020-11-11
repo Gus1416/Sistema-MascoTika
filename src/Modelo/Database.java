@@ -99,7 +99,7 @@ public boolean ejecutarProcedimiento(String nombre){
 
 
 
-///////////////// Imposrt java.sql.*;        para agregar variables de tipo fecha con ----> private Date Fecha;
+///////////////// Import java.sql.*;        para agregar variables de tipo fecha con ----> private Date Fecha;
 
 
 ///////////////////////////Estos son los 3 metodos principales para invocar las consultas desde la aplicacion 
