@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Codigo;
 
 import java.sql.Connection;
@@ -11,14 +12,13 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
 public class Conexion {
-    public Connection conectar (){
+    public  static Connection conectar (){
         Connection con = null;
         
-        String password = "12345";
-        String usuario = "Gus14";
-        String url = "jdbc:sqlserver://DESKTOP-2ISCQDL:1433;databaseName=Sistema MascoTika;user=" + usuario
+         String password = "2019024516";
+         String usuario = "SebCor";
+        String url = "jdbc:sqlserver://DESKTOP-PHP5KCJ\\SEBCORDB:1433;databaseName=Sistema MascoTika;user=" + usuario
                         + ";password=" + password;
         try {
                 con = DriverManager.getConnection(url);
@@ -32,7 +32,8 @@ public class Conexion {
         return con;
     }
     
-    public static void main(String [] args){
+    public static void main(String[] args){
         conectar();
     }
+
 }

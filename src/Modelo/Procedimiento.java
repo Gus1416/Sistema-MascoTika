@@ -10,6 +10,19 @@ public class Procedimiento {
     private String DescripcionProcedimiento;
     private int MontoServAdom;
 
+    public Procedimiento() {
+    }
+    
+    public Procedimiento(int IDProcedimiento, String Tipo, int MontoUnitario, String DescripcionProcedimiento, int MontoServAdom) {
+        this.IDProcedimiento = IDProcedimiento;
+        this.Tipo = Tipo;
+        this.MontoUnitario = MontoUnitario;
+        this.DescripcionProcedimiento = DescripcionProcedimiento;
+        this.MontoServAdom = MontoServAdom;
+    }
+
+  
+    
     /**
      * @return the IDProcedimiento
      */

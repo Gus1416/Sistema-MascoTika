@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+        
+        ///////////////////////// SETSET 
+        
+        
 public class ProcedimientoDAO {
    Conexion conectar = new Conexion();
    Connection con;
@@ -18,17 +22,21 @@ public class ProcedimientoDAO {
        List<Procedimiento> datos = new ArrayList<> ();
        String sql = "select * from Procedimiento";
        try {
-           con = conectar.conectar();
+           con = Conexion.conectar();
            ps = con.prepareStatement(sql);
            rs = ps.executeQuery();
            while (rs.next()){
                Procedimiento p = new Procedimiento();
-               p.setIDProcedimiento(rs.);
-           }
-       }catch (Exception e) {
-           
-       }
-       return datos;
+               p.setIDProcedimiento(rs.getInt(1));
+                p.setTipo(rs.getString(2));
+                p.setMontoUnitario(rs.getInt(3));
+                p.setMontoServAdom(rs.getInt(4));
+                datos.add(p);
+            }
+        } catch (Exception e) {
+        }
+        return datos;
+    
    }
 }
 
