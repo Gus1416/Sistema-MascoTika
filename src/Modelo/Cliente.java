@@ -6,6 +6,15 @@ public class Cliente {
     private int Cedula;
     private String Usuario;
     private String Contraseña;
+    
+    public Cliente() {
+    }
+    
+    public Cliente(int Cedula, String Usuario, String Contraseña){
+        this.Cedula = Cedula;
+        this.Usuario = Usuario;
+        this.Contraseña = Contraseña;
+    }
 
     /**
      * @return the Cedula

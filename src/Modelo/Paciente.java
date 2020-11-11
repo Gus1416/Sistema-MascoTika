@@ -9,6 +9,16 @@ public class Paciente {
     private String Nombre;
     private int Edad;
 
+    public Paciente(){
+    }
+    
+    public Paciente (String IDPaciente, String Raza, String Nombre, int Edad){
+        this.IDPaciente = IDPaciente;
+        this.Raza = Raza;
+        this.Nombre = Nombre;
+        this.Edad = Edad;
+    }
+    
     /**
      * @return the IDPaciente
      */
