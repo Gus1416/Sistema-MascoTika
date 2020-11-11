@@ -1,12 +1,22 @@
 
 package Modelo;
+import java.sql.*;
 
 
 public class CitaMedica {
     
     private String IDCitaMed;
-    private String Fecha;
+    private Date Fecha;
     private String Estado;
+
+    public CitaMedica() {
+    }
+
+    public CitaMedica(String IDCitaMed, Date Fecha, String Estado) {
+        this.IDCitaMed = IDCitaMed;
+        this.Fecha = Fecha;
+        this.Estado = Estado;
+    }
 
     /**
      * @return the IDCitaMed
@@ -25,14 +35,14 @@ public class CitaMedica {
     /**
      * @return the Fecha
      */
-    public String getFecha() {
+    public Date getFecha() {
         return Fecha;
     }
 
     /**
      * @param Fecha the Fecha to set
      */
-    public void setFecha(String Fecha) {
+    public void setFecha(Date Fecha) {
         this.Fecha = Fecha;
     }
 

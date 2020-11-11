@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import Controlador.ControladorVet;
+//import Controlador.ControladorVet;
 
 /**
  *
@@ -226,7 +226,7 @@ public class GestionProcedimientosVet extends javax.swing.JFrame {
      */
     public  static void main(String args[]) {
    GestionProcedimientosVet v= new GestionProcedimientosVet();
-   ControladorVet c=new ControladorVet(v);
+//   ControladorVet c=new ControladorVet(v);
    v.setVisible(true);
    v.setLocationRelativeTo(v);
    

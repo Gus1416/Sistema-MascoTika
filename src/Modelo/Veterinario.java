@@ -10,6 +10,17 @@ public class Veterinario {
     private String HorarioAtencion;
     private String SitioWeb;
 
+    public Veterinario() {
+    }
+
+    public Veterinario(int Cedula, String IDVet, int Calificacion, String HorarioAtencion, String SitioWeb) {
+        this.Cedula = Cedula;
+        this.IDVet = IDVet;
+        this.Calificacion = Calificacion;
+        this.HorarioAtencion = HorarioAtencion;
+        this.SitioWeb = SitioWeb;
+    }
+
     /**
      * @return the Cedula
      */

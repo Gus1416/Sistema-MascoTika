@@ -10,12 +10,4 @@ import java.util.List;
 
         
         ///////////////////////// SETSET 
-        
-        
-public class ProcedimientoDAO {
-    
-    public Procedimiento insertar(int ID,String tipo,int MontoUnitario)
-    
-
-
-}
+           
