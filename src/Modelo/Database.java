@@ -6,17 +6,16 @@
 
 package Modelo;
 
-import Codigo.Conexion;
+
 import java.sql.*;
 import java.util.*;
 
 public class Database {
     
- Conexion connection = new Conexion();   
-private final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver ";
-private final String URL= "jdbc:sqlserver://DESKTOP-PHP5KCJ\\SEBCORDB:1433;databaseName=Sistema MascoTika";
-private final String USER= "SebCor";
-private final String PASSWORD= "2019024516";
+private final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+private final String URL= "jdbc:sqlserver://localhost:1433;databaseName=sistema_mascotika";
+private final String USER= "sebastian";
+private final String PASSWORD= "12345";
 private Connection conexion;
 
 
@@ -99,7 +98,7 @@ public boolean ejecutarProcedimiento(String nombre){
 
 
 
-///////////////// Imposrt java.sql.*;        para agregar variables de tipo fecha con ----> private Date Fecha;
+///////////////// Import java.sql.*;        para agregar variables de tipo fecha con ----> private Date Fecha;
 
 
 ///////////////////////////Estos son los 3 metodos principales para invocar las consultas desde la aplicacion 

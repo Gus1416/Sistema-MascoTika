@@ -16,9 +16,14 @@ public class Conexion {
     public  static Connection conectar (){
         Connection con = null;
         
-         String password = "2019024516";
+        /* String password = "2019024516";
          String usuario = "SebCor";
         String url = "jdbc:sqlserver://DESKTOP-PHP5KCJ\\SEBCORDB:1433;databaseName=Sistema MascoTika;user=" + usuario
+                        + ";password=" + password;
+*/
+            String password = "12345";
+         String usuario = "Gus14";
+        String url = "jdbc:sqlserver://DESKTOP-2ISCQDL:1433;databaseName=sistema_mascotika;user=" + usuario
                         + ";password=" + password;
         try {
                 con = DriverManager.getConnection(url);

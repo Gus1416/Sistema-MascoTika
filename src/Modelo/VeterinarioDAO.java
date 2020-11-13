@@ -5,10 +5,10 @@ import java.util.*;
 public class VeterinarioDAO {
     
     public Veterinario insertar (int Cedula, String IDVet, int Calificacion, String HorarioAtencion, String SitioWeb){
-        String q = "INSERT INTO Veterinario VALUES('"
-                + Cedula + "','"
-                + IDVet + "','"
-                + Calificacion + "','"
+        String q = "INSERT INTO Veterinario VALUES("
+                + Cedula + ",'"
+                + IDVet + "',"
+                + Calificacion + ",'"
                 + HorarioAtencion + "','"
                 + SitioWeb + "')";
         if (new Database().actualizar(q) > 0){

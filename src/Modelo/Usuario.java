@@ -8,6 +8,22 @@ public class Usuario {
     private String Contraseña;
     private String Rol;
 
+    public Usuario() {
+    }
+
+    public Usuario(String NombreUsuario, String Contraseña, String Rol) {
+        this.NombreUsuario = NombreUsuario;
+        this.Contraseña = Contraseña;
+        this.Rol = Rol;
+    }
+
+  
+    
+    
+    
+    
+    
+    
     /**
      * @return the NombreUsuario
      */

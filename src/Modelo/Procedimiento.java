@@ -2,6 +2,7 @@
 package Modelo;
 
 
+
 public class Procedimiento {
     
     private int IDProcedimiento;
@@ -9,6 +10,8 @@ public class Procedimiento {
     private int MontoUnitario;
     private String DescripcionProcedimiento;
     private int MontoServAdom;
+    private int CodigoCategoria;
+    private int IDPaciente;
 
     public Procedimiento() {
     }
