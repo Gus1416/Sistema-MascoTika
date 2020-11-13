@@ -37,8 +37,8 @@ public class Conexion {
         return con;
     }
     
-    public static void main(String[] args){
+   /* public static void main(String[] args){
         conectar();
-    }
+    }*/
 
 }

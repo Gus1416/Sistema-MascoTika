@@ -17,13 +17,6 @@ public class Usuario {
         this.Rol = Rol;
     }
 
-  
-    
-    
-    
-    
-    
-    
     /**
      * @return the NombreUsuario
      */

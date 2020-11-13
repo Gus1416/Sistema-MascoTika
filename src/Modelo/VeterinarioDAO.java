@@ -18,23 +18,26 @@ public class VeterinarioDAO {
     }
     
     public int actualizar(int Cedula, String IDVet, int Calificacion, String HorarioAtencion, String SitioWeb){
-        String q = "UPDATE Veterinario SET Cedula='"
-                + Cedula + "', IDVet='"
-                + IDVet + "', Calificacion='"
-                + Calificacion + "', HorarioAtencion='"
+        String q = "UPDATE Veterinario SET Cedula="
+                + Cedula + ", IDVet='"
+                + IDVet + "', Calificacion="
+                + Calificacion + ", HorarioAtencion='"
                 + HorarioAtencion + "','"
                 + SitioWeb + "'";
         return new Database().actualizar(q);
     }
     
     public Veterinario obtenerRegistro(int Cedula){
-       String q = "SELECT * FROM Veterinario WHERE Cedula='"
-               + Cedula + "'";
+       String q = "SELECT * FROM Veterinario WHERE Cedula="
+               + Cedula;
        List<Map> registros = new Database().ejecutar(q);
        Veterinario veterinario = null;
        for (Map registro : registros){
-           veterinario = new Veterinario ((int)registro.get("Cedula"), (String)registro.get("IDVet"),
-           (int)registro.get("Calificacion"), (String)registro.get("HorarioAtencion"), 
+           veterinario = new Veterinario (
+                   (int)registro.get("Cedula"), 
+                   (String)registro.get("IDVet"),
+                   (int)registro.get("Calificacion"), 
+                   (String)registro.get("HorarioAtencion"), 
                    (String)registro.get("SitioWeb"));
        }
        return veterinario;
@@ -46,8 +49,11 @@ public class VeterinarioDAO {
        List<Map> registros = new Database().ejecutar(q);
        Veterinario veterinario = null;
        for (Map registro : registros){
-           veterinario = new Veterinario ((int)registro.get("Cedula"), (String)registro.get("IDVet"),
-           (int)registro.get("Calificacion"), (String)registro.get("HorarioAtencion"), 
+           veterinario = new Veterinario (
+                   (int)registro.get("Cedula"), 
+                   (String)registro.get("IDVet"),
+                   (int)registro.get("Calificacion"), 
+                   (String)registro.get("HorarioAtencion"), 
                    (String)registro.get("SitioWeb"));
        }
        return veterinario;
@@ -58,8 +64,11 @@ public class VeterinarioDAO {
         List<Map> registros = new Database().ejecutar(q);
         List<Veterinario> veterinarios = new ArrayList();
         for (Map registro : registros){
-           Veterinario veterinario = new Veterinario ((int)registro.get("Cedula"), (String)registro.get("IDVet"),
-           (int)registro.get("Calificacion"), (String)registro.get("HorarioAtencion"), 
+           Veterinario veterinario = new Veterinario (
+                   (int)registro.get("Cedula"), 
+                   (String)registro.get("IDVet"),     
+                   (int)registro.get("Calificacion"), 
+                   (String)registro.get("HorarioAtencion"), 
                    (String)registro.get("SitioWeb"));
            veterinarios.add(veterinario);
        }
@@ -67,8 +76,8 @@ public class VeterinarioDAO {
     }
     
     public int eliminar(int Cedula){
-        String q = "DELETE FROM Veterinario WHERE Cedula='"
-                + Cedula + "'";
+        String q = "DELETE FROM Veterinario WHERE Cedula="
+                + Cedula;
         return new Database().actualizar(q);
     }
 }

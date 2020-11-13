@@ -4,7 +4,7 @@ package Modelo;
 
 public class CategoriaServicio {
     
-    private String CodigoCategoria;
+    private int CodigoCategoria;
     private String NombreCategoria;
     private String Estado;
     private String DescripcionCategoria;
@@ -13,14 +13,28 @@ public class CategoriaServicio {
     /**
      * @return the CodigoCategoria
      */
-    public String getCodigoCategoria() {
+    
+    
+    
+    public CategoriaServicio() {
+    }
+
+    public CategoriaServicio(int CodigoCategoria, String NombreCategoria, String Estado, String DescripcionCategoria, String TipoCategoria) {
+        this.CodigoCategoria = CodigoCategoria;
+        this.NombreCategoria = NombreCategoria;
+        this.Estado = Estado;
+        this.DescripcionCategoria = DescripcionCategoria;
+        this.TipoCategoria = TipoCategoria;
+    }
+
+    public int getCodigoCategoria() {
         return CodigoCategoria;
     }
 
     /**
      * @param CodigoCategoria the CodigoCategoria to set
      */
-    public void setCodigoCategoria(String CodigoCategoria) {
+    public void setCodigoCategoria(int CodigoCategoria) {
         this.CodigoCategoria = CodigoCategoria;
     }
 

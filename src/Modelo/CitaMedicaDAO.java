@@ -4,22 +4,24 @@ import java.util.*;
 
 public class CitaMedicaDAO {
     
-    public CitaMedica insertar (String IDCitaMed, java.sql.Date Fecha, String Estado){
+    public CitaMedica insertar (String IDCitaMed, String Fecha, String Estado, int CedulaCliente){
         String q = "INSERT INTO CitaMedica VALUES('"
                 + IDCitaMed + "','"
                 + Fecha + "','"
-                + Estado + "')";
+                + Estado + "',"
+                + CedulaCliente + ")";
         if (new Database().actualizar(q) > 0){
-            return new CitaMedica(IDCitaMed, Fecha, Estado);
+            return new CitaMedica(IDCitaMed, Fecha, Estado, CedulaCliente);
         }
         return null;
     }
     
-    public int actualizar(String IDCitaMed, java.sql.Date Fecha, String Estado){
+    public int actualizar(String IDCitaMed, String Fecha, String Estado, int CedulaCliente){
         String q = "UPDATE CitaMedica SET IDCitaMed='"
                 + IDCitaMed + "', IDVet='"
                 + Fecha + "', Calificacion='"
-                + Estado + "'";
+                + Estado + "',"
+                + CedulaCliente +"";
         return new Database().actualizar(q);
     }
     
@@ -29,20 +31,20 @@ public class CitaMedicaDAO {
        List<Map> registros = new Database().ejecutar(q);
        CitaMedica citamedica = null;
        for (Map registro : registros){
-           citamedica = new CitaMedica ((String)registro.get("IDCitaMed"), (java.sql.Date)registro.get("Fecha"), 
-                   (String)registro.get("Estado"));
+           citamedica = new CitaMedica ((String)registro.get("IDCitaMed"), (String)registro.get("Fecha"), 
+                   (String)registro.get("Estado"), (int)registro.get("CedulaCliente"));
        }
        return citamedica;
     }
     
-    public CitaMedica obtenerRegistro(java.sql.Date Fecha){
+    public CitaMedica obtenerRegistroFecha(String Fecha){
        String q = "SELECT * FROM CitaMedica WHERE Fecha='"
                + Fecha + "'";
        List<Map> registros = new Database().ejecutar(q);
        CitaMedica citamedica = null;
        for (Map registro : registros){
-           citamedica = new CitaMedica ((String)registro.get("IDCitaMed"), (java.sql.Date)registro.get("Fecha"), 
-                   (String)registro.get("Estado"));
+           citamedica = new CitaMedica ((String)registro.get("IDCitaMed"), (String)registro.get("Fecha"), 
+                   (String)registro.get("Estado"), (int)registro.get("CedulaCliente"));
        }
        return citamedica;
     }
@@ -52,8 +54,8 @@ public class CitaMedicaDAO {
         List<Map> registros = new Database().ejecutar(q);
         List<CitaMedica> citasmedicas = new ArrayList();
         for (Map registro : registros){
-           CitaMedica citamedica = new CitaMedica ((String)registro.get("IDCitaMed"), (java.sql.Date)registro.get("Fecha"), 
-                   (String)registro.get("Estado"));
+           CitaMedica citamedica = new CitaMedica ((String)registro.get("IDCitaMed"), (String)registro.get("Fecha"), 
+                   (String)registro.get("Estado"), (int)registro.get("CedulaCliente"));
            citasmedicas.add(citamedica);
        }
        return citasmedicas; 

@@ -1,22 +1,24 @@
 
 package Modelo;
-import java.sql.*;
+//import java.sql.*;
 
 
 public class CitaMedica {
     
     private String IDCitaMed;
-    private Date Fecha;
+    private String Fecha;
     private String Estado;
+    private int CedulaCliente;
  
 
     public CitaMedica() {
     }
 
-    public CitaMedica(String IDCitaMed, Date Fecha, String Estado) {
+    public CitaMedica(String IDCitaMed, String Fecha, String Estado, int Cedulaciente) {
         this.IDCitaMed = IDCitaMed;
         this.Fecha = Fecha;
         this.Estado = Estado;
+        this.CedulaCliente = CedulaCliente;
     }
 
     /**
@@ -36,14 +38,14 @@ public class CitaMedica {
     /**
      * @return the Fecha
      */
-    public Date getFecha() {
+    public String getFecha() {
         return Fecha;
     }
 
     /**
      * @param Fecha the Fecha to set
      */
-    public void setFecha(Date Fecha) {
+    public void setFecha(String Fecha) {
         this.Fecha = Fecha;
     }
 
@@ -59,6 +61,14 @@ public class CitaMedica {
      */
     public void setEstado(String Estado) {
         this.Estado = Estado;
+    }
+
+    public int getCedulaCliente() {
+        return CedulaCliente;
+    }
+
+    public void setCedulaCliente(int CedulaCliente) {
+        this.CedulaCliente = CedulaCliente;
     }
     
 }

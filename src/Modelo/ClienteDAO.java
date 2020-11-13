@@ -4,23 +4,19 @@ import java.util.*;
 
 public class ClienteDAO {
     
-    public Cliente insertar(int Cedula, String Usuario, String Contraseña){
-        String q = "INSERT INTO Cliente VALUES('"
-                + Cedula + "','"
-                + Usuario + "','"
-                + Contraseña + "')";
+    public Cliente insertar(int Cedula){
+        String q = "INSERT INTO Cliente VALUES("
+                + Cedula +")";
         if (new Database().actualizar(q) > 0){
-            return new Cliente(Cedula, Usuario, Contraseña);
+            return new Cliente(Cedula);
         }
         return null;
     }
     
     //Actualiza mediante la cedula del usuario
-    public int actualizar(int Cedula, String Usuario, String Contraseña){
-        String q = "UPDATE Cliente SET Usuario='"
-                + Usuario + "', Contraseña='"
-                + Contraseña + "' WHERE Cedula='"
-                + Cedula + "'"; 
+    public int actualizar(int Cedula){
+        String q = "INSERT INTO Cliente VALUES("
+                + Cedula +")";; 
         return new Database().actualizar(q);
     }
     
@@ -30,8 +26,7 @@ public class ClienteDAO {
        List<Map> registros = new Database().ejecutar(q);
        Cliente cliente = null;
        for (Map registro : registros){
-           cliente = new Cliente ((int)registro.get("Cedula"),
-           (String)registro.get("Usuario"), (String)registro.get("Contraseña"));
+           cliente = new Cliente ((int)registro.get("Cedula"));
        }
        return cliente;
     }
@@ -41,16 +36,15 @@ public class ClienteDAO {
         List<Map> registros = new Database().ejecutar(q);
         List<Cliente> clientes = new ArrayList();
         for (Map registro : registros){
-           Cliente cliente = new Cliente ((int)registro.get("Cedula"),
-           (String)registro.get("Usuario"), (String)registro.get("Contraseña"));
+           Cliente cliente = new Cliente ((int)registro.get("Cedula"));
            clientes.add(cliente);
        }
        return clientes; 
     }
     
     public int eliminar(int Cedula){
-        String q = "DELETE FROM Cliente WHERE Cedula='"
-                + Cedula + "'";
+        String q = "DELETE FROM Cliente WHERE Cedula="
+                + Cedula;
         return new Database().actualizar(q);
     }   
 }

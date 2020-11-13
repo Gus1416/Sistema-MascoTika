@@ -12,11 +12,12 @@ public class Persona {
     private String Distrito;
     private String UbicacionGmaps;
     private String Email;
+    private String NombreUsuario;
 
     public Persona() {
     }
 
-    public Persona(int Cedula, String Nombre, String Apellido, String Provincia, String Canton, String Distrito, String UbicacionGmaps, String Email) {
+    public Persona(int Cedula, String Nombre, String Apellido, String Provincia, String Canton, String Distrito, String UbicacionGmaps, String Email, String NombreUsuario) {
         this.Cedula = Cedula;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
@@ -25,21 +26,17 @@ public class Persona {
         this.Distrito = Distrito;
         this.UbicacionGmaps = UbicacionGmaps;
         this.Email = Email;
+        this.NombreUsuario = NombreUsuario;
     }
 
-    Persona(int i, String string, String string0, String string1, String string2, String string3, String string4) {
+    /*Persona(int i, String string, String string0, String string1, String string2, String string3, String string4) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     Persona(int i, String string, int i0, String string0, int i1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 
-    
-    
-    
-    
-    
     
     /**
      * @return the Cedula
@@ -152,5 +149,14 @@ public class Persona {
     public void setEmail(String Email) {
         this.Email = Email;
     }
+
+    public String getNombreUsuario() {
+        return NombreUsuario;
+    }
+
+    public void setNombreUsuario(String NombreUsuario) {
+        this.NombreUsuario = NombreUsuario;
+    }
+    
     
 }

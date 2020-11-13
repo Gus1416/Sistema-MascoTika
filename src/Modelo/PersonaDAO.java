@@ -6,7 +6,9 @@
 
 package Modelo;
 
-import java.sql.Connection;
+import java.util.*;
+
+/*import java.sql.Connection;
 import Codigo.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,13 +18,90 @@ import java.util.Map;
 
 import java.util.*;
 
-import Modelo.Procedimiento;
+import Modelo.Procedimiento;*/
 
 
 
 public class PersonaDAO {
     
-    public Persona  insertar(int cedula, String nombre ,String apellido ,String provincia , String canton, String distrito, String ubicaciongmaps,  String email){
+    public Persona insertar(int Cedula, String Nombre, String Apellido, String Provincia, String Canton, String Distrito, String UbicacionGmaps, String Email, String NombreUsuario){
+        String q = "INSERT INTO Persona VALUES("
+                + Cedula +",'"
+                + Nombre + "','"
+                + Apellido + "','"
+                + Provincia + "','"
+                + Canton + "','"
+                + Distrito + "','"
+                + UbicacionGmaps + "','"
+                + Email + "','"
+                + NombreUsuario + "')";
+        if (new Database().actualizar(q) > 0){
+            return new Persona(Cedula, Nombre, Apellido, Provincia, Canton, Distrito, UbicacionGmaps, Email, NombreUsuario);
+        }
+        return null;
+    }
+    
+    public int actualizar(int Cedula, String Nombre, String Apellido, String Provincia, String Canton, String Distrito, String UbicacionGmaps, String Email, String NombreUsuario){
+        String q = "UPDATE Persona SET Cedula="
+                + Cedula + ", Nombre='"
+                + Nombre + "', Apellido='"
+                + Apellido + "',Provincia='"
+                + Provincia + "', Canton='"
+                + Canton + "', Distrito='"
+                + Distrito + "', UbicacionGmaps='"
+                + UbicacionGmaps + "', Email='"
+                + Email + "', NombreUsuario='"
+                + NombreUsuario + "'";
+        return new Database().actualizar(q);
+    }
+    
+    public List obtenerRegistros(){
+        String q = "SELECT * FROM Persona";
+        List<Map> registros = new Database().ejecutar(q);
+        List<Persona> personas = new ArrayList();
+        for (Map registro : registros){
+            Persona persona = new Persona(
+                    (int)registro.get("Cedula"),
+            (String)registro.get("Nombre"),
+            (String)registro.get("Apellido"),
+            (String)registro.get("Provincia"),
+            (String)registro.get("Canton"),
+            (String)registro.get("Distrito"),
+            (String)registro.get("UbicacionGmaps"),
+            (String)registro.get("Email"),
+            (String)registro.get("NombreUsuario"));
+            personas.add(persona);
+        }
+        return personas;
+    }
+    
+    public List obtenerRegistros(int Cedula){
+        String q = "SELECT * FROM Persona WHERE Cedula=" + Cedula;
+        List<Map> registros = new Database().ejecutar(q);
+        List<Persona> personas = new ArrayList();
+        for (Map registro : registros){
+            Persona persona = new Persona(
+                    (int)registro.get("Cedula"),
+            (String)registro.get("Nombre"),
+            (String)registro.get("Apellido"),
+            (String)registro.get("Provincia"),
+            (String)registro.get("Canton"),
+            (String)registro.get("Distrito"),
+            (String)registro.get("UbicacionGmaps"),
+            (String)registro.get("Email"),
+            (String)registro.get("NombreUsuario"));
+            personas.add(persona);
+        }
+        return personas;
+    }
+    
+    public int eliminar(int Cedula){
+        String q = "DELETE FROM Persona WHERE Cedula=" + Cedula;
+        return new Database().actualizar(q);
+    }
+    
+    
+   /* public Persona  insertar(int cedula, String nombre ,String apellido ,String provincia , String canton, String distrito, String ubicaciongmaps,  String email){
         
         String q= "INSERT INTO Persona VALUES( ' "+cedula+" ' ,  '  " +nombre+ "  ', '  "  +apellido + "  ' , '   " + provincia + "  ' ,  '  "  +canton+ " ' , ' " + distrito  +" ',   '    " +   ubicaciongmaps  +" ,   '   "+  email+  "   ') ";        
         if  (new Database().actualizar(q)    > 0 ){                  
@@ -81,7 +160,7 @@ public class PersonaDAO {
      public int eliminar(int cedula){
          String q = "DELETE FROM Persona WHERE Cedula= '  " +cedula + "  ' ";
          return new Database().actualizar(q);
-     } 
+     } */
     
     
     

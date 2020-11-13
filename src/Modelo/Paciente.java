@@ -4,7 +4,7 @@ package Modelo;
 
 public class Paciente {
     
-    private String IDPaciente;
+    private int IDPaciente;
     private String Raza;
     private String Nombre;
     private int Edad;
@@ -12,7 +12,7 @@ public class Paciente {
     public Paciente(){
     }
     
-    public Paciente (String IDPaciente, String Raza, String Nombre, int Edad){
+    public Paciente (int IDPaciente, String Raza, String Nombre, int Edad){
         this.IDPaciente = IDPaciente;
         this.Raza = Raza;
         this.Nombre = Nombre;
@@ -22,14 +22,14 @@ public class Paciente {
     /**
      * @return the IDPaciente
      */
-    public String getIDPaciente() {
+    public int getIDPaciente() {
         return IDPaciente;
     }
 
     /**
      * @param IDPaciente the IDPaciente to set
      */
-    public void setIDPaciente(String IDPaciente) {
+    public void setIDPaciente(int IDPaciente) {
         this.IDPaciente = IDPaciente;
     }
 

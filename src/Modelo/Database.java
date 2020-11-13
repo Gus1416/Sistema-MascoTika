@@ -14,7 +14,7 @@ public class Database {
     
 private final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 private final String URL= "jdbc:sqlserver://localhost:1433;databaseName=sistema_mascotika";
-private final String USER= "sebastian";
+private final String USER= "Gus14";
 private final String PASSWORD= "12345";
 private Connection conexion;
 
@@ -87,12 +87,11 @@ private List acomodarDatos(ResultSet rs){
 
 public boolean ejecutarProcedimiento(String nombre){
     try{
-        CallableStatement cs= conexion.prepareCall("  {call   "  + nombre+  "  }  " );
+        CallableStatement cs= conexion.prepareCall("{call "  + nombre +  "  }  " );
        return  cs.execute();
     }catch(SQLException e){
         e.printStackTrace();
-    }
-    
+    } 
     return false;
 }
 
