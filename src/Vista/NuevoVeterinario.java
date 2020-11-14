@@ -42,6 +42,13 @@ public class NuevoVeterinario extends javax.swing.JInternalFrame {
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Nuevo Veterinario");
+
         jLabel1.setText("Cedula");
 
         jLabel2.setText("Identificador");
