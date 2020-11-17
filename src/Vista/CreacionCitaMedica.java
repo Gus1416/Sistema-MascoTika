@@ -37,6 +37,12 @@ public class CreacionCitaMedica extends javax.swing.JInternalFrame {
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         jLabel1.setText("ID Cita Medica");
 
         jLabel2.setText("Fecha");

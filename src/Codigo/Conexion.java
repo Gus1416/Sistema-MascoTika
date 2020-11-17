@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Conexion {
     public  static Connection conectar (){
@@ -36,6 +38,8 @@ public class Conexion {
         }
         return con;
     }
+    
+   
     
    /* public static void main(String[] args){
         conectar();

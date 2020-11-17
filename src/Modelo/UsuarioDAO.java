@@ -74,9 +74,22 @@ public class UsuarioDAO {
         return usuarios;  
     }
        
-     public List obtenerRegistros(String NombreUsuario){                               // traerse todos los procedimientos segun su tipo
-         String q = "SELECT * FROM Usuario WHERE NombreUsuario=='"
+     public List obtenerRegistrosUsuario(String NombreUsuario){                               // traerse todos los procedimientos segun su tipo
+         String q = "SELECT * FROM Usuario WHERE NombreUsuario='"
                  + NombreUsuario + "'" ;
+        List <Map>  registros = new Database().ejecutar(q);  
+        List <Usuario> usuarios = new ArrayList();
+         for(Map registro : registros){
+            Usuario usuario = new Usuario((String)registro.get("NombreUsuario"), 
+                    (String)registro.get("Contraseña"),
+                    (String)registro.get("Rol"));   
+            usuarios.add(usuario);
+         }
+        return usuarios;     
+        }  
+     public List obtenerRegistrosRol(String Rol){                               // traerse todos los procedimientos segun su tipo
+         String q = "SELECT * FROM Usuario WHERE Rol='"
+                 + Rol + "'" ;
         List <Map>  registros = new Database().ejecutar(q);  
         List <Usuario> usuarios = new ArrayList();
          for(Map registro : registros){

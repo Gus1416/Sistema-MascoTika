@@ -14,7 +14,7 @@ public class Database {
     
 private final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 private final String URL= "jdbc:sqlserver://localhost:1433;databaseName=sistema_mascotika";
-private final String USER= "sebastian";
+private final String USER= "Gus14";
 private final String PASSWORD= "12345";
 private Connection conexion;
 
