@@ -8,17 +8,7 @@ package Modelo;
 
 import java.util.*;
 
-/*import java.sql.Connection;
-import Codigo.Conexion;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-import java.util.*;
-
-import Modelo.Procedimiento;*/
 
 
 

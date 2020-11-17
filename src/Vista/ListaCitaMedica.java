@@ -5,22 +5,20 @@
  */
 package Vista;
 
+
+
 import Controlador.SistemaMascoTika;
 import Modelo.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class ListaProcedimientos extends javax.swing.JInternalFrame {
+public class ListaCitaMedica extends javax.swing.JInternalFrame {
 
-  
-    
-    
-    //// Calm down
-    
-    
-    
-    public ListaProcedimientos() {
+    /**
+     * Creates new form ListaCitaMedica
+     */
+    public ListaCitaMedica() {
         initComponents();
         jButton2.setEnabled(false);
         jButton3.setEnabled(false);
@@ -28,41 +26,42 @@ public class ListaProcedimientos extends javax.swing.JInternalFrame {
     
     
     public void ObtenerDatos(){
-        List<Procedimiento> procedimientos = new ProcedimientoDAO().obtenerRegistrosLista();
+        List<CitaMedica> citasmedicas = new CitaMedicaDAO().obtenerRegistros();
         DefaultTableModel modelo = new DefaultTableModel();
-        String [] columnas= { "ID Procedimiento", "Tipo", "MontoUnitario","MontoServAdom","Descripcion","CodigoCategoria","IDPaciente"};
+        String [] columnas= { "IDCitaMed", "Fecha", "Estado","Cedula Cliente"};
         modelo.setColumnIdentifiers(columnas);
-        for(Procedimiento proced : procedimientos){
-            String [] renglon = {proced.getIDProcedimiento(),
-                proced.getTipo(),
-                Integer.toString(proced.getMontoUnitario()),
-                Integer.toString(proced.getMontoServAdom()),
-                proced.getDescripcionProcedimiento(),
-                Integer.toString(proced.getCodigoCategoria()),
-                Integer.toString(proced.getIDPaciente())    };
+        for(CitaMedica cita : citasmedicas){
+            String [] renglon = {cita.getIDCitaMed(),
+                cita.getFecha(),
+                cita.getEstado(),
+                Integer.toString(cita.getCedulacliente()   ) };
             modelo.addRow(renglon);
             }
        jTable1.setModel(modelo);
         }
     
-    public void ObtenerDatos(String IDProcedimiento){
-        List<Procedimiento> procedimientos = new ProcedimientoDAO().obtenerRegistroIDLista(IDProcedimiento);
+    
+    public void ObtenerDatos(String IDCitaMed){
+        System.out.println("LE LLEGA LA CITA MED DESDE EL JTEXTFIELD" + IDCitaMed);
+        List<CitaMedica> citasmedicas = new CitaMedicaDAO().obtenerRegistrosLista(IDCitaMed);    //check this
         DefaultTableModel modelo = new DefaultTableModel();
-        String [] columnas= { "ID Procedimiento", "Tipo", "MontoUnitario","MontoServAdom","Descripcion","CodigoCategoria","IDPaciente"};
+        String [] columnas= { "IDCitaMed", "Fecha", "Estado","CedulaCliente"};
         modelo.setColumnIdentifiers(columnas);
-        for(Procedimiento proced : procedimientos){
-            String [] renglon = {proced.getIDProcedimiento(),
-                proced.getTipo(),
-                Integer.toString(proced.getMontoUnitario()),
-                Integer.toString(proced.getMontoServAdom()),
-                proced.getDescripcionProcedimiento(),
-                Integer.toString(proced.getCodigoCategoria()),
-                Integer.toString(proced.getIDPaciente())    };
+        for(CitaMedica cita : citasmedicas){
+            String [] renglon = {cita.getIDCitaMed(),
+                cita.getFecha(),
+                cita.getEstado(),
+                Integer.toString(cita.getCedulacliente())};
             modelo.addRow(renglon);
             }
        jTable1.setModel(modelo);
         }
+    
+    
+    
+    
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -82,21 +81,21 @@ public class ListaProcedimientos extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Lista Procedimientos");
+        setTitle("Listado Citas Medicas");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID Procedimiento", "Tipo", "Monto Unitario", "Monto A domicilio", "Cod.Categoria ", "ID Procedimiento"
+                "ID Cita Med", "Fecha", "Estado", "Cedula Cliente"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("Busqueda Avanzada");
 
-        jLabel2.setText("ID Procedimiento");
+        jLabel2.setText("ID Cita Medica");
 
         jButton1.setText("Buscar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -134,72 +133,85 @@ public class ListaProcedimientos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField1)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jButton4))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jButton4)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(jButton2)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
-                .addGap(16, 16, 16))
+                .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if (jTextField1.getText().equals("")){
-            JOptionPane.showMessageDialog(rootPane, "Digite una cedula valida");
+        if (jTextField1.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite una ID de cita valido");
             return;
         }
-        String  IDProcedimiento = jTextField1.getText();
-       this.ObtenerDatos(IDProcedimiento);
+        String  IDCitaMed = jTextField1.getText();
+        System.out.println(IDCitaMed);
+        this.ObtenerDatos(IDCitaMed);
         jButton2.setEnabled(true);
         jButton3.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String IDProcedimiento = jTextField1.getText();
-        ActualizarProcedimiento actualizarProcedimiento = new ActualizarProcedimiento(IDProcedimiento);
-        SistemaMascoTika.desktopPane.add(actualizarProcedimiento);
-        actualizarProcedimiento.toFront();
-        actualizarProcedimiento.setVisible(true);
-        
+        String idcitamedica = jTextField1.getText();
+        ActualizarCitaMedica actualizarCitaMedica = new ActualizarCitaMedica(idcitamedica);
+        SistemaMascoTika.desktopPane.add(actualizarCitaMedica);
+        actualizarCitaMedica.toFront();
+        actualizarCitaMedica.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String  IDProcedimiento = jTextField1.getText();
-        int proced = new ProcedimientoDAO().eliminar(IDProcedimiento);
-        if (proced == 0){
-           JOptionPane.showMessageDialog(rootPane, "No se pudo eliminar el veterinario");
+       String  IDCitaMed = jTextField1.getText();
+        int citamed = new CitaMedicaDAO().eliminar(IDCitaMed);
+        if (citamed == 0){
+           JOptionPane.showMessageDialog(rootPane, "No se pudo eliminar la cita MI BROOOOOOO HAHAHA inutil");
            return; 
         }
-        JOptionPane.showMessageDialog(rootPane, "Se elimino al procedimiento con ID: "+ IDProcedimiento);
+        JOptionPane.showMessageDialog(rootPane, "Se elimino al cita medica con ID: "+ IDCitaMed);
         jTextField1.setText("");
         jButton2.setEnabled(false);
         jButton3.setEnabled(false);    

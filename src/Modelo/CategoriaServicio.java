@@ -10,10 +10,7 @@ public class CategoriaServicio {
     private String DescripcionCategoria;
     private String TipoCategoria;
 
-    /**
-     * @return the CodigoCategoria
-     */
-    
+   
     
     
     public CategoriaServicio() {

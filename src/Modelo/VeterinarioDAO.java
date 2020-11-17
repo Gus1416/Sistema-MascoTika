@@ -6,9 +6,7 @@ public class VeterinarioDAO {
     
     public Veterinario insertar (int Cedula, String IDVet, int Calificacion, String HorarioAtencion, String SitioWeb){
         String q = "INSERT INTO Veterinario VALUES("
-                + Cedula + ",'"
-                + IDVet + "',"
-                + Calificacion + ",'"
+                + Cedula + ",'"+ IDVet + "',"+ Calificacion + ",'"
                 + HorarioAtencion + "','"
                 + SitioWeb + "')";
         if (new Database().actualizar(q) > 0){
@@ -58,7 +56,8 @@ public class VeterinarioDAO {
        }
        return veterinario;
     }
-    
+   
+   /// ------------------------------------------------------------------------------------------------------------------
     public List obtenerRegistros(){
         String q = "SELECT * FROM Veterinario";
         List<Map> registros = new Database().ejecutar(q);

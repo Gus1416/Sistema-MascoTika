@@ -21,6 +21,8 @@ public class Procedimiento {
         this.MontoUnitario = MontoUnitario;
         this.DescripcionProcedimiento = DescripcionProcedimiento;
         this.MontoServAdom = MontoServAdom;
+        this.CodigoCategoria=CodigoCategoria;
+        this.IDPaciente=IDPaciente;
     }
 
     /**

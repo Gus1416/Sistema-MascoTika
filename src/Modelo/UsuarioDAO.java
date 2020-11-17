@@ -41,13 +41,13 @@ public class UsuarioDAO {
         String q= " UPDATE Usuario SET NombreUsuario='"
                 + NombreUsuario + "', Contraseña='"
                 + Contraseña + "', Rol='"
-                + Rol + "'";     
+                + Rol + " ' ";     
         return new Database().actualizar(q);    
     }
        
    public Usuario obtenerRegistro(String Rol){      //// Hacer una consulta con unicamente el ID del procedimiento
         String q= "SELECT * FROM Usuario WHERE Rol='"
-                + Rol + "'";
+                + Rol + " ' ";
         List <Map> registros = new Database().ejecutar(q);                         //Lista que guarda los registros de la tabla  
         Usuario usuario = null;
         for(Map registro: registros){

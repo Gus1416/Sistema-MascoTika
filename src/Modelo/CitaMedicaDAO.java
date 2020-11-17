@@ -5,11 +5,13 @@ import java.util.*;
 public class CitaMedicaDAO {
     
     public CitaMedica insertar (String IDCitaMed, String Fecha, String Estado, int CedulaCliente){
-        String q = "INSERT INTO CitaMedica VALUES('"
-                + IDCitaMed + "','"
-                + Fecha + "','"
-                + Estado + "',"
-                + CedulaCliente + ")";
+        String q = "INSERT INTO [Cita Medica] VALUES('"
+                + IDCitaMed + " ', ' "
+                + Fecha + " ' , ' " 
+                +  Estado + " ', " 
+                + CedulaCliente+" )";
+              
+        
         if (new Database().actualizar(q) > 0){
             return new CitaMedica(IDCitaMed, Fecha, Estado, CedulaCliente);
         }
@@ -17,17 +19,17 @@ public class CitaMedicaDAO {
     }
     
     public int actualizar(String IDCitaMed, String Fecha, String Estado, int CedulaCliente){
-        String q = "UPDATE CitaMedica SET IDCitaMed='"
-                + IDCitaMed + "', IDVet='"
-                + Fecha + "', Calificacion='"
-                + Estado + "',"
-                + CedulaCliente +"";
+        String q = "UPDATE [Cita Medica] SET Fecha=' "
+                + Fecha + " ', Estado=' "
+                + Estado + " ', CedulaCliente="
+                 +CedulaCliente + " WHERE IDCitaMed='"
+                + IDCitaMed + "  '  ";
         return new Database().actualizar(q);
     }
     
     public CitaMedica obtenerRegistro(String IDCitaMed){
-       String q = "SELECT * FROM CitaMedica WHERE IDCitaMed='"
-               + IDCitaMed + "'";
+       String q = "SELECT * FROM [Cita Medica] WHERE IDCitaMed='"
+               + IDCitaMed + " ' ";
        List<Map> registros = new Database().ejecutar(q);
        CitaMedica citamedica = null;
        for (Map registro : registros){
@@ -38,7 +40,7 @@ public class CitaMedicaDAO {
     }
     
     public CitaMedica obtenerRegistroFecha(String Fecha){
-       String q = "SELECT * FROM CitaMedica WHERE Fecha='"
+       String q = "SELECT * FROM [Cita Medica] WHERE Fecha='"
                + Fecha + "'";
        List<Map> registros = new Database().ejecutar(q);
        CitaMedica citamedica = null;
@@ -50,19 +52,38 @@ public class CitaMedicaDAO {
     }
     
     public List obtenerRegistros(){
-        String q = "SELECT * FROM CitaMedica";
+        String q = "SELECT * FROM [Cita Medica]";
         List<Map> registros = new Database().ejecutar(q);
         List<CitaMedica> citasmedicas = new ArrayList();
         for (Map registro : registros){
-           CitaMedica citamedica = new CitaMedica ((String)registro.get("IDCitaMed"), (String)registro.get("Fecha"), 
+           CitaMedica citamed = new CitaMedica (
+                (String)registro.get("IDCitaMed"), (String)registro.get("Fecha"), 
+                (String)registro.get("Estado"), (int)registro.get("CedulaCliente"));
+          citasmedicas.add(citamed);
+       }
+       return citasmedicas; 
+    }
+    
+    public List obtenerRegistrosLista(String IDCitaMed){
+        
+        System.out.print("ESTA LLEGANDO EL ID DE LA CITA MI BRO" + IDCitaMed);
+        String q = "SELECT * FROM [Cita Medica] WHERE IDCitaMed='"
+                + IDCitaMed  + " ' ";
+        List<Map> regis = new Database().ejecutar(q);
+        List<CitaMedica> citasmedicas = new ArrayList();
+        for (Map registro : regis){
+                   CitaMedica citamedica = new CitaMedica ((String)registro.get("IDCitaMed"), (String)registro.get("Fecha"), 
                    (String)registro.get("Estado"), (int)registro.get("CedulaCliente"));
            citasmedicas.add(citamedica);
        }
        return citasmedicas; 
     }
     
+    
+    
+    
     public int eliminar(String IDCitaMed){
-        String q = "DELETE FROM CitaMedica WHERE IDCitaMed='"
+        String q = "DELETE FROM [Cita Medica] WHERE IDCitaMed='"
                 + IDCitaMed + "'";
         return new Database().actualizar(q);
     }

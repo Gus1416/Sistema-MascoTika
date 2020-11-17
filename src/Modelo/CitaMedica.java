@@ -8,17 +8,17 @@ public class CitaMedica {
     private String IDCitaMed;
     private String Fecha;
     private String Estado;
-    private int CedulaCliente;
+    private int Cedulacliente;
  
 
     public CitaMedica() {
     }
 
-    public CitaMedica(String IDCitaMed, String Fecha, String Estado, int Cedulaciente) {
+    public CitaMedica(String IDCitaMed, String Fecha, String Estado, int CedulaCliente) {
         this.IDCitaMed = IDCitaMed;
         this.Fecha = Fecha;
         this.Estado = Estado;
-        this.CedulaCliente = CedulaCliente;
+        this.Cedulacliente = CedulaCliente;
     }
 
     /**
@@ -63,12 +63,16 @@ public class CitaMedica {
         this.Estado = Estado;
     }
 
-    public int getCedulaCliente() {
-        return CedulaCliente;
+    public int getCedulacliente() {
+        return Cedulacliente;
     }
 
-    public void setCedulaCliente(int CedulaCliente) {
-        this.CedulaCliente = CedulaCliente;
+    public void setCedulacliente(int Cedulacliente) {
+        this.Cedulacliente = Cedulacliente;
     }
+
+  
+    
+    
     
 }
