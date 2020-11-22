@@ -24,8 +24,9 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     private NuevoPaciente nuevoPaciente;
     private ListaPacientes listaPacientes;
     private GestionPacientes historialclinico;
-    
-
+    private ConsultaPacientes consultaPacientes;
+    private ConsultaClientes consultaClientes;
+    private ListaUsuarios listaUsuarios;
     /**
      * Creates new form SistemaMascoTika
      */
@@ -43,6 +44,9 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         nuevoPaciente =new NuevoPaciente();
         listaPacientes = new ListaPacientes();
         historialclinico = new GestionPacientes();
+        consultaPacientes = new ConsultaPacientes();
+        consultaClientes = new ConsultaClientes();
+        listaUsuarios = new ListaUsuarios();
         
         //Agregamos los frames internos al desktop pane
         desktopPane.add(listaVeterinarios);
@@ -56,7 +60,9 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         desktopPane.add(nuevoPaciente);
         desktopPane.add(listaPacientes);
         desktopPane.add(historialclinico);
-      
+        desktopPane.add(consultaPacientes);
+        desktopPane.add(consultaClientes);
+        desktopPane.add(listaUsuarios);
     }
 
 
@@ -84,14 +90,14 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -177,17 +183,15 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         jMenuItem3.setText("Nuevo Usuario");
         jMenu1.add(jMenuItem3);
 
+        jMenuItem19.setText("Lista Usuarios");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem19);
+
         menuBar.add(jMenu1);
-
-        jMenu2.setText("Clientes");
-
-        jMenuItem1.setText("Lista de Clientes");
-        jMenu2.add(jMenuItem1);
-
-        jMenuItem2.setText("Nuevo Cliente");
-        jMenu2.add(jMenuItem2);
-
-        menuBar.add(jMenu2);
 
         jMenu3.setText("Veterinarios");
 
@@ -222,6 +226,22 @@ public class SistemaMascoTika extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem16);
+
+        jMenuItem17.setText("Consulta Pacientes");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem17);
+
+        jMenuItem18.setText("Consulta Cliente");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem18);
 
         menuBar.add(jMenu3);
 
@@ -355,6 +375,19 @@ public class SistemaMascoTika extends javax.swing.JFrame {
        listaPacientes.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        consultaPacientes.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        consultaClientes.ObtenerDatos();
+        consultaClientes.setVisible(true);
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        listaUsuarios.setVisible(true);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -402,12 +435,10 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
@@ -415,7 +446,9 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

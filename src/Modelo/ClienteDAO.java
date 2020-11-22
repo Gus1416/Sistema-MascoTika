@@ -31,15 +31,30 @@ public class ClienteDAO {
        return cliente;
     }
     
-    public List obtenerRegistros(){
-        String q = "SELECT * FROM Cliente";
+    public List obtenerClientes(){
+        String q = "SELECT Persona.Cedula, Persona.Nombre, Persona.Apellido, Persona.Email FROM Cliente, Persona WHERE Cliente.Cedula = Persona.Cedula";
         List<Map> registros = new Database().ejecutar(q);
-        List<Cliente> clientes = new ArrayList();
+        List<ConsultClien> clientes = new ArrayList();
         for (Map registro : registros){
-           Cliente cliente = new Cliente ((int)registro.get("Cedula"));
+           ConsultClien cliente = new ConsultClien ((int)registro.get("Cedula"),
+           (String)registro.get("Nombre"),
+           (String)registro.get("Apellido"),
+           (String)registro.get("Email"));
            clientes.add(cliente);
        }
        return clientes; 
+    }
+    
+    public List consultaCitasCliente (int Cedula){
+        String q ="SELECT [Cita Medica].IDCitaMed, [Cita Medica].Fecha, [Cita Medica].Estado FROM [Cita Medica], Cliente WHERE [Cita Medica].CedulaCliente = Cliente.Cedula AND Cliente.Cedula ="+Cedula;
+        List<Map> regis = new Database().ejecutar(q);
+        List<ConsultClien> consultCliens = new ArrayList();
+        for (Map registro : regis){
+                   ConsultClien consultClien = new ConsultClien ((String)registro.get("IDCitaMed"), (String)registro.get("Fecha"), 
+                   (String)registro.get("Estado"));        
+                   consultCliens.add(consultClien);
+       }    
+       return consultCliens; 
     }
     
     public int eliminar(int Cedula){

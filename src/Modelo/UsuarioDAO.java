@@ -38,10 +38,9 @@ public class UsuarioDAO {
     }
     
     public int actualizar(String NombreUsuario,String Contraseña, String Rol){
-        String q= " UPDATE Usuario SET NombreUsuario='"
-                + NombreUsuario + "', Contraseña='"
+        String q= " UPDATE Usuario SET Contraseña='"
                 + Contraseña + "', Rol='"
-                + Rol + " ' ";     
+                + Rol + " ' WHERE NombreUsuario="+"'"+NombreUsuario+"'";     
         return new Database().actualizar(q);    
     }
        

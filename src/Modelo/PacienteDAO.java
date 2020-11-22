@@ -91,6 +91,33 @@ public class PacienteDAO {
        return pacientes; 
     }
     
+    public List consultaPorVet (String IDVet){
+        String q = "Select Paciente.IDPaciente, Paciente.Nombre, Paciente.Raza, Paciente.Edad from Paciente, VeterinarioEjecutaProcedimiento, Veterinario, Procedimiento where Veterinario.IDVet = VeterinarioEjecutaProcedimiento.IDVet  AND VeterinarioEjecutaProcedimiento.IDProcedimiento = Procedimiento.IDProcedimiento AND Procedimiento.IDPaciente = Paciente.IDPaciente  AND Veterinario.IDVet = '"+ IDVet +"'";
+        List<Map> registros = new Database().ejecutar(q);
+        List<Paciente> pacientes = new ArrayList();
+        for (Map registro : registros){
+           Paciente paciente = new Paciente ((int)registro.get("IDPaciente"),
+           (String)registro.get("Raza"), (String)registro.get("Nombre"), 
+                   (int)registro.get("Edad"));
+           pacientes.add(paciente);
+       }
+       return pacientes; 
+    }
+    
+    public List consultaCitasPaciente (String IDPaciente){
+        String q = "Select [Cita Medica].IDCitaMed, [Cita Medica].Fecha, [Cita Medica].Estado, [Cita Medica].CedulaCliente, Procedimiento.Tipo from [Cita Medica], Procedimiento, Paciente, CitaMedicaContieneProcedimientos where [Cita Medica].IDCitaMed = CitaMedicaContieneProcedimientos.IDCitaMed AND CitaMedicaContieneProcedimientos.IDProcedimiento = Procedimiento.IDProcedimiento AND Procedimiento.IDPaciente = Paciente.IDPaciente AND Paciente.IDPaciente = '"+IDPaciente+"'";      
+        List<Map> regis = new Database().ejecutar(q);
+        List<ConsultPaci> consultPacis = new ArrayList();
+        for (Map registro : regis){
+                   ConsultPaci consultPaci = new ConsultPaci ((String)registro.get("IDCitaMed"), (String)registro.get("Fecha"), 
+                   (String)registro.get("Estado"), (int)registro.get("CedulaCliente"), (String)registro.get("Tipo"));
+           System.out.println(((String)registro.get("Tipo")));
+                   consultPacis.add(consultPaci);
+       }
+        
+       return consultPacis; 
+    }
+    
     public int eliminar(int IDPaciente){
         String q = "DELETE FROM Paciente WHERE IDPaciente="
                 + IDPaciente;

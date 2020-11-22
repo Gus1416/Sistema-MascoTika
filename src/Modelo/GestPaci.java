@@ -29,12 +29,6 @@ public class GestPaci {
         this.MontoServAdom = MontoServAdom;
     }
 
-   
-   
-   
-   
-   
-   
     /**
      * @return the IDPaciente
      */

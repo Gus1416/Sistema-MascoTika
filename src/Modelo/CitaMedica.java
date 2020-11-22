@@ -20,6 +20,10 @@ public class CitaMedica {
         this.Estado = Estado;
         this.Cedulacliente = CedulaCliente;
     }
+    
+    
+    
+    
 
     /**
      * @return the IDCitaMed

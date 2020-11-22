@@ -24,6 +24,10 @@ public class Procedimiento {
         this.CodigoCategoria=CodigoCategoria;
         this.IDPaciente=IDPaciente;
     }
+    
+    public Procedimiento(String Tipo) {
+        this.Tipo = Tipo;  
+    }
 
     /**
      * @return the IDProcedimiento
