@@ -44,9 +44,13 @@ public class UsuarioDAO {
         return new Database().actualizar(q);    
     }
        
-   public Usuario obtenerRegistro(String Rol){      //// Hacer una consulta con unicamente el ID del procedimiento
-        String q= "SELECT * FROM Usuario WHERE Rol='"
-                + Rol + " ' ";
+   public Usuario obtenerRegistro(String Rol, String NombreUsuario, String Password){      //// Hacer una consulta con unicamente el ID del procedimiento
+       System.out.println(Rol);
+       System.out.println(NombreUsuario);
+       System.out.println(Password);
+       String q= "SELECT * FROM Usuario WHERE Rol='"
+                + Rol + "' AND NombreUsuario = '"+ NombreUsuario + "' "
+                + "AND Contraseña = '"+Password +"'";
         List <Map> registros = new Database().ejecutar(q);                         //Lista que guarda los registros de la tabla  
         Usuario usuario = null;
         for(Map registro: registros){

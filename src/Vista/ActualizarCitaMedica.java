@@ -157,6 +157,12 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
         String Estado = jTextField3.getText();
         String CedulaCliente = jTextField4.getText();
         
+        System.out.println(IDCitaMed);
+        System.out.println(Fecha);
+        System.out.println(Estado);
+        System.out.println(CedulaCliente);
+        
+        
         
         if(IDCitaMed.equals("") || Fecha.equals("") || Estado.equals("") || CedulaCliente.equals("")){
             JOptionPane.showMessageDialog(rootPane, "Por Favor llene todos los campos mi bro");

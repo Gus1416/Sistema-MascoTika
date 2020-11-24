@@ -27,6 +27,8 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     private ConsultaPacientes consultaPacientes;
     private ConsultaClientes consultaClientes;
     private ListaUsuarios listaUsuarios;
+    private GestionCitasVet gestioncitasvet;
+    private Login login;
     /**
      * Creates new form SistemaMascoTika
      */
@@ -47,6 +49,8 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         consultaPacientes = new ConsultaPacientes();
         consultaClientes = new ConsultaClientes();
         listaUsuarios = new ListaUsuarios();
+        gestioncitasvet = new GestionCitasVet();
+        login = new Login();
         
         //Agregamos los frames internos al desktop pane
         desktopPane.add(listaVeterinarios);
@@ -63,6 +67,8 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         desktopPane.add(consultaPacientes);
         desktopPane.add(consultaClientes);
         desktopPane.add(listaUsuarios);
+        desktopPane.add(gestioncitasvet);
+        desktopPane.add(login);
     }
 
 
@@ -73,6 +79,7 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         desktopPane = new javax.swing.JDesktopPane();
+        jButton1 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -107,12 +114,23 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
 
         jMenuItem8.setText("jMenuItem8");
 
         jMenuItem12.setText("jMenuItem12");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButton1);
+        jButton1.setBounds(590, 20, 57, 23);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -305,6 +323,19 @@ public class SistemaMascoTika extends javax.swing.JFrame {
 
         menuBar.add(jMenu6);
 
+        jMenu2.setText("Gestión Citas");
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("Gestión Citas Vet");
+        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jCheckBoxMenuItem1);
+
+        menuBar.add(jMenu2);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -318,7 +349,7 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -388,6 +419,15 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         listaUsuarios.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
+    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+        gestioncitasvet.ObtenerDatos();
+        gestioncitasvet.setVisible(true);
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        login.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -434,7 +474,10 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;

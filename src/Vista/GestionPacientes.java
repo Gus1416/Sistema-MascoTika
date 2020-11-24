@@ -9,6 +9,7 @@ import Modelo.GestPaci;
 import Modelo.Paciente;
 import Modelo.PacienteDAO;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +26,7 @@ public class GestionPacientes extends javax.swing.JInternalFrame {
     
     public void ObtenerHistorialClinico(int IDPaciente){
         System.out.println("EN OBTENER HISTORIAL CLINICO LLEGA ESTE ID: " + IDPaciente);
+        
         List<GestPaci> paciente = new PacienteDAO().obtenerHistorialID(IDPaciente);
                System.out.println("EJECUTE EL OBTENER HISTORIAL DEL PACIENTE DAO");
         DefaultTableModel modelo = new DefaultTableModel();
@@ -119,9 +121,14 @@ public class GestionPacientes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      
+      if (jTextField1.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Digite un ID de Paciente valido");
+            return;
+        }
         int IDPaciente = Integer.parseInt(jTextField1.getText());
-        this.ObtenerHistorialClinico(IDPaciente);
+       this.ObtenerHistorialClinico(IDPaciente);
+       
+   
         
         
         

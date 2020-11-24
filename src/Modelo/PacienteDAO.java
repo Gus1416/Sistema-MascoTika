@@ -41,10 +41,8 @@ public class PacienteDAO {
     
     
     public List obtenerHistorialID(int IDPaciente){
-        String q = "SELECT Paciente.IDPaciente,Paciente.Nombre,Paciente.Raza,"
-                + "Procedimiento.IDProcedimiento,Procedimiento.Tipo,Procedimiento.DescripcionProcedimiento,\n" +
-                    "Procedimiento.MontoUnitario,Procedimiento.MontoServAdom\n" +
-                    "FROM Paciente INNER JOIN Procedimiento on Procedimiento. "+ IDPaciente+" =Paciente. "+IDPaciente+ "   ";
+        System.out.println(" este es el id que llega al metodo de busqueda " + IDPaciente);
+        String q =  "SELECT * FROM Paciente JOIN Procedimiento on  Paciente.IDPaciente = Procedimiento.IDPaciente  WHERE Paciente.IDPaciente= " + IDPaciente ;   
         List<Map> registros = new Database().ejecutar(q);
         List<GestPaci> pacientes = new ArrayList();
         for (Map registro : registros){
@@ -54,17 +52,13 @@ public class PacienteDAO {
                    (String)registro.get("DescripcionProcedimiento"),(int)registro.get("MontoUnitario"),
                    (int)registro.get("MontoServAdom") );
            pacientes.add(paciente);
+           
+           
        }
        return pacientes; 
     }
     
-    
-    
-    
-    
-    
-    
-    
+   
     public List obtenerRegistros(){
         String q = "SELECT * FROM Paciente";
         List<Map> registros = new Database().ejecutar(q);
@@ -79,6 +73,9 @@ public class PacienteDAO {
     }
     
     public List obtenerRegistrosListPaciente(int IDPaciente){
+        
+        System.out.println(" EL METODO DE OBTENER  BUSQUEDA ESTA FUNCCANDO");
+        
         String q = "SELECT * FROM Paciente WHERE IDPaciente= "+ IDPaciente;
         List<Map> registros = new Database().ejecutar(q);
         List<Paciente> pacientes = new ArrayList();

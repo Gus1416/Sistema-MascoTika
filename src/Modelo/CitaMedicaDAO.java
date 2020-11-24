@@ -10,8 +10,6 @@ public class CitaMedicaDAO {
                 + Fecha + " ' , ' " 
                 +  Estado + " ', " 
                 + CedulaCliente+" )";
-              
-        
         if (new Database().actualizar(q) > 0){
             return new CitaMedica(IDCitaMed, Fecha, Estado, CedulaCliente);
         }
@@ -78,6 +76,31 @@ public class CitaMedicaDAO {
        }
        return citasmedicas; 
     }
+    
+    
+    
+     public List obtenerRegistrosEstado(String Estado){
+        
+        System.out.print(" ESTE ES EL ID QUE LLEGA AL METODO DE OBTENER INFO SEGUN EL ESTADO MAEEEE :::::" + Estado);
+        
+        String q = "SELECT * FROM [Cita Medica] WHERE Estado= ' "
+                + Estado  + " '   ";
+        List<Map> regis = new Database().ejecutar(q);
+        List<CitaMedica> citasmedicas = new ArrayList();
+        for (Map registro : regis){
+                   CitaMedica citamedica = new CitaMedica ((String)registro.get("IDCitaMed"), (String)registro.get("Fecha"), 
+                   (String)registro.get("Estado"), (int)registro.get("CedulaCliente"));
+           citasmedicas.add(citamedica);
+       }
+       return citasmedicas; 
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     
