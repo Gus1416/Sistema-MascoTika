@@ -91,6 +91,32 @@ public class VeterinarioDAO {
        return veterinarios; 
     }
     
+    public List ObtenerVetProcedimiento(String IDProcedimiento){
+        String q = "SELECT Veterinario.Cedula, Veterinario.IDVet, Persona.Nombre, Persona.Apellido, Veterinario.Calificacion, Veterinario.HorarioAtencion, Veterinario.SitioWeb" +
+" FROM Persona, Veterinario, VeterinarioEjecutaProcedimiento, Procedimiento" +
+" WHERE Persona.Cedula = Veterinario.Cedula" +
+" AND Veterinario.IDVet = VeterinarioEjecutaProcedimiento.IDVet" +
+" AND VeterinarioEjecutaProcedimiento.IDProcedimiento = Procedimiento.IDProcedimiento" +
+" AND Procedimiento.IDProcedimiento = '"+ IDProcedimiento + "'";
+        List<Map> registros = new Database().ejecutar(q);
+        List<Veterinario> veterinarios = new ArrayList();
+        for (Map registro : registros){
+            Veterinario veterinario = new Veterinario(
+                    (int)registro.get("Cedula"),
+                    (String)registro.get("IDVet"),
+                    (int)registro.get("Calificacion"),                  
+                    (String)registro.get("HorarioAtencion"),
+                    (String)registro.get("SitioWeb"),
+                    (String)registro.get("Nombre"),
+                    (String)registro.get("Apellido")
+            );
+            veterinarios.add(veterinario);
+        }
+        return veterinarios;
+    }
+    
+    
+    
     public int eliminar(int Cedula){
         String q = "DELETE FROM Veterinario WHERE Cedula="
                 + Cedula;

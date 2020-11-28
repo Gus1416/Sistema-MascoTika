@@ -4,6 +4,7 @@ package Modelo;
 
 public class Procedimiento {
     
+    private String NombreProcedimiento;
     private String IDProcedimiento;
     private String Tipo;
     private int MontoUnitario;
@@ -24,6 +25,17 @@ public class Procedimiento {
         this.CodigoCategoria=CodigoCategoria;
         this.IDPaciente=IDPaciente;
     }
+
+    public Procedimiento(String NombreProcedimiento, String IDProcedimiento, String Tipo, int MontoUnitario, int MontoServAdom, String DescripcionProcedimiento) {
+        this.NombreProcedimiento = NombreProcedimiento;
+        this.IDProcedimiento = IDProcedimiento;
+        this.Tipo = Tipo;
+        this.MontoUnitario = MontoUnitario;
+        this.MontoServAdom = MontoServAdom;
+        this.DescripcionProcedimiento = DescripcionProcedimiento;
+    }
+    
+    
     
     public Procedimiento(String Tipo) {
         this.Tipo = Tipo;  
@@ -125,6 +137,20 @@ public class Procedimiento {
      */
     public void setIDPaciente(int IDPaciente) {
         this.IDPaciente = IDPaciente;
+    }
+
+    /**
+     * @return the NombreProcedimiento
+     */
+    public String getNombreProcedimiento() {
+        return NombreProcedimiento;
+    }
+
+    /**
+     * @param NombreProcedimiento the NombreProcedimiento to set
+     */
+    public void setNombreProcedimiento(String NombreProcedimiento) {
+        this.NombreProcedimiento = NombreProcedimiento;
     }
     
     

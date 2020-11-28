@@ -235,7 +235,7 @@ public class NuevoUsuario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "No se pudo registrar el usuario");
            return;
         }
-        Persona persona = new PersonaDAO().insertar(Integer.parseInt(Cedula), Nombre, Apellido, Provincia, Canton, Distrito, UbicacionGmaps, Email, Usuario);
+        Persona persona = new PersonaDAO().insertar(Integer.parseInt(Cedula), Nombre, Apellido, Provincia, Canton, Distrito, Email, Usuario);
         if (persona == null){
             JOptionPane.showMessageDialog(rootPane, "No se pudo registrar el usuario");
            return;

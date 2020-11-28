@@ -29,6 +29,8 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     private ListaUsuarios listaUsuarios;
     private GestionCitasVet gestioncitasvet;
     private Login login;
+    private ModuloClientes gestioncitascliente;
+    private Filtros filtros;
     /**
      * Creates new form SistemaMascoTika
      */
@@ -51,6 +53,9 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         listaUsuarios = new ListaUsuarios();
         gestioncitasvet = new GestionCitasVet();
         login = new Login();
+        gestioncitascliente = new ModuloClientes();
+        filtros = new Filtros();
+        
         
         //Agregamos los frames internos al desktop pane
         desktopPane.add(listaVeterinarios);
@@ -69,6 +74,8 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         desktopPane.add(listaUsuarios);
         desktopPane.add(gestioncitasvet);
         desktopPane.add(login);
+        desktopPane.add(gestioncitascliente);
+        desktopPane.add(filtros);
     }
 
 
@@ -80,6 +87,10 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         desktopPane = new javax.swing.JDesktopPane();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -123,6 +134,8 @@ public class SistemaMascoTika extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        desktopPane.setAutoscrolls(true);
+
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +143,33 @@ public class SistemaMascoTika extends javax.swing.JFrame {
             }
         });
         desktopPane.add(jButton1);
-        jButton1.setBounds(590, 20, 57, 23);
+        jButton1.setBounds(557, 20, 90, 23);
+
+        jButton2.setText("CLIENTE");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButton2);
+        jButton2.setBounds(50, 320, 130, 70);
+
+        jButton3.setText("ADMINISTRADOR");
+        desktopPane.add(jButton3);
+        jButton3.setBounds(50, 140, 130, 70);
+
+        jButton4.setText("VETERINARIO");
+        desktopPane.add(jButton4);
+        jButton4.setBounds(50, 230, 130, 70);
+
+        jButton5.setText("Filtros");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButton5);
+        jButton5.setBounds(560, 60, 90, 23);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -343,13 +382,13 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -380,6 +419,7 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+      nuevacitamedica.generarnum();
       nuevacitamedica.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
@@ -428,6 +468,15 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        gestioncitascliente.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        filtros.ObtenerRegistros();
+        filtros.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -475,6 +524,10 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

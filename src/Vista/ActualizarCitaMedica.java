@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vista;
 
 
@@ -12,15 +8,26 @@ import javax.swing.JOptionPane;
 
 import Modelo.CitaMedica;
 import Modelo.CitaMedicaDAO;
+import Modelo.Database;
+import Modelo.Persona;
+import Modelo.SendEmail;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ActualizarCitaMedica
-     */
+  
+    private String Nombre;
+    private String Apellido;
+    private String Email;
+    SendEmail mail = new SendEmail();
+    int enviarCorreo;
+    int citamed;
+    
+    
     public ActualizarCitaMedica() {
         initComponents();
     }
@@ -35,15 +42,33 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
     }
     
     
+   public List obtenerRegistros(int Cedula){
+        String q = "SELECT * FROM Persona WHERE Cedula=" + Cedula;
+        List<Map> registros = new Database().ejecutar(q);
+        List<Persona> personas = new ArrayList();
+        for (Map registro : registros){
+            Persona persona = new Persona(
+                    (int)registro.get("Cedula"),
+            (String)registro.get("Nombre"),
+            (String)registro.get("Apellido"),
+            (String)registro.get("Provincia"),
+            (String)registro.get("Canton"),
+            (String)registro.get("Distrito"),
+            (String)registro.get("Email"),
+            (String)registro.get("NombreUsuario"));
+            personas.add(persona);
+            Nombre= persona.getNombre();
+            Apellido= persona.getApellido();
+             Email= persona.getEmail(); 
+        }
+        
+        
+        return personas;
+    }
     
+
     
-    
-    
-    
-    
-    
-    
-    
+
     
     
     @SuppressWarnings("unchecked")
@@ -164,12 +189,39 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
         
         
         
+        List iniciarvariables = this.obtenerRegistros(Integer.parseInt(CedulaCliente));
+           
+        
+        
         if(IDCitaMed.equals("") || Fecha.equals("") || Estado.equals("") || CedulaCliente.equals("")){
             JOptionPane.showMessageDialog(rootPane, "Por Favor llene todos los campos mi bro");
             return;
         }
-       
-        int citamed = new CitaMedicaDAO().actualizar(IDCitaMed, Fecha, Estado,Integer.parseInt(CedulaCliente));
+        
+        if (IDCitaMed.equals("Asignada")) {
+            enviarCorreo = mail.EnvioMail(Email, Nombre, Apellido, Fecha);
+            citamed = new CitaMedicaDAO().actualizar(IDCitaMed, Fecha, Estado, Integer.parseInt(CedulaCliente));
+            JOptionPane.showMessageDialog(rootPane, "Informacion de la cita medica con ID : " + IDCitaMed + " actualizada");
+
+
+            // int Ced =  this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getCedula();
+           // String name = this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getNombre();
+            //String apellido= this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getApellido();
+           // String correo =   this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getEmail();
+            
+        System.out.println(Nombre);
+        System.out.println(Apellido);
+        System.out.println(Email);
+        System.out.println(Fecha);
+            
+            mail.EnvioMail(Email, Nombre, Apellido, Fecha);
+            JOptionPane.showMessageDialog(rootPane, "Informacion de la cita medica con ID : "+IDCitaMed+" actualizada");
+        
+        }
+        
+        // Por si el mae le pone algun estado distinto
+        citamed = new CitaMedicaDAO().actualizar(IDCitaMed, Fecha, Estado,Integer.parseInt(CedulaCliente));
+        
         if (citamed== 0){
            JOptionPane.showMessageDialog(rootPane, "No se pudo actualizar la informacion :(");
            return; 

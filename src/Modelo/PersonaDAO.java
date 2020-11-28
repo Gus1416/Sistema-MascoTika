@@ -14,7 +14,7 @@ import java.util.*;
 
 public class PersonaDAO {
     
-    public Persona insertar(int Cedula, String Nombre, String Apellido, String Provincia, String Canton, String Distrito, String UbicacionGmaps, String Email, String NombreUsuario){
+    public Persona insertar(int Cedula, String Nombre, String Apellido, String Provincia, String Canton, String Distrito, String Email, String NombreUsuario){
         String q = "INSERT INTO Persona VALUES("
                 + Cedula +",'"
                 + Nombre + "','"
@@ -22,16 +22,16 @@ public class PersonaDAO {
                 + Provincia + "','"
                 + Canton + "','"
                 + Distrito + "','"
-                + UbicacionGmaps + "','"
+                
                 + Email + "','"
                 + NombreUsuario + "')";
         if (new Database().actualizar(q) > 0){
-            return new Persona(Cedula, Nombre, Apellido, Provincia, Canton, Distrito, UbicacionGmaps, Email, NombreUsuario);
+            return new Persona(Cedula, Nombre, Apellido, Provincia, Canton, Distrito, Email, NombreUsuario);
         }
         return null;
     }
     
-    public int actualizar(int Cedula, String Nombre, String Apellido, String Provincia, String Canton, String Distrito, String UbicacionGmaps, String Email, String NombreUsuario){
+    public int actualizar(int Cedula, String Nombre, String Apellido, String Provincia, String Canton, String Distrito, String Email, String NombreUsuario){
         String q = "UPDATE Persona SET Cedula="
                 + Cedula + ", Nombre='"
                 + Nombre + "', Apellido='"
@@ -39,7 +39,7 @@ public class PersonaDAO {
                 + Provincia + "', Canton='"
                 + Canton + "', Distrito='"
                 + Distrito + "', UbicacionGmaps='"
-                + UbicacionGmaps + "', Email='"
+                
                 + Email + "', NombreUsuario='"
                 + NombreUsuario + "'";
         return new Database().actualizar(q);
@@ -57,7 +57,6 @@ public class PersonaDAO {
             (String)registro.get("Provincia"),
             (String)registro.get("Canton"),
             (String)registro.get("Distrito"),
-            (String)registro.get("UbicacionGmaps"),
             (String)registro.get("Email"),
             (String)registro.get("NombreUsuario"));
             personas.add(persona);
@@ -77,7 +76,6 @@ public class PersonaDAO {
             (String)registro.get("Provincia"),
             (String)registro.get("Canton"),
             (String)registro.get("Distrito"),
-            (String)registro.get("UbicacionGmaps"),
             (String)registro.get("Email"),
             (String)registro.get("NombreUsuario"));
             personas.add(persona);

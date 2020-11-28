@@ -4,10 +4,12 @@ package Vista;
 import Controlador.SistemaMascoTika;
 import Modelo.Persona;
 import Modelo.PersonaDAO;
+import Modelo.UbicacionPersona;
 import Modelo.Usuario;
 import Modelo.UsuarioDAO;
 import Modelo.Veterinario;
 import Modelo.VeterinarioDAO;
+import Modelo.*;
 import javax.swing.JOptionPane;
 
 
@@ -231,6 +233,12 @@ public class RegistroCliente extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
+        Mapa mapa = new Mapa();
+        String ubicacion = mapa.getUbicacion();
+        String latitud = mapa.getLatitud();
+        String longitud = mapa.getLongitud();
+        System.out.println(latitud);
+        
         String password=   jPasswordField1.getText();
        String confirmpass=  jPasswordField2.getText();
         
@@ -260,8 +268,13 @@ public class RegistroCliente extends javax.swing.JInternalFrame {
            JOptionPane.showMessageDialog(rootPane, "No se pudo registrar el nuevo cliente");
            return; 
         }
-        Persona people = new PersonaDAO().insertar(Integer.parseInt(Cedula), Nombre, Apellido, Provincia, Canton, Distrito, Canton, Email, NombreUsuario);
+        Persona people = new PersonaDAO().insertar(Integer.parseInt(Cedula), Nombre, Apellido, Provincia, Canton, Distrito, Email, NombreUsuario);
         if (people == null){
+           JOptionPane.showMessageDialog(rootPane, "No se pudo registrar el nuevo cliente");
+           return; 
+        }
+        UbicacionPersona datosmapa = new UbicacionPersonaDAO().insertar(Integer.parseInt(Cedula), ubicacion, latitud, longitud);
+        if (datosmapa == null){
            JOptionPane.showMessageDialog(rootPane, "No se pudo registrar el nuevo cliente");
            return; 
         }
@@ -274,6 +287,9 @@ public class RegistroCliente extends javax.swing.JInternalFrame {
         jTextField6.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
+        mapa.setUbicacion("");
+        mapa.setLatitud("");
+        mapa.setLongitud("");
         this.setVisible(false);
                 
         } 

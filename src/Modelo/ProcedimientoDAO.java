@@ -70,13 +70,12 @@ public class ProcedimientoDAO {
         List<Procedimiento> procedimientos = new ArrayList();
         for (Map registro : registros){
             Procedimiento procedimie = new Procedimiento(
+                    (String)registro.get("NombreProcedimiento"),
                     (String)registro.get("IDProcedimiento"),
                     (String)registro.get("Tipo"), 
                     (int)registro.get("MontoUnitario"), 
                     (int)registro.get("MontoServAdom"),
-                    (String)registro.get("DescripcionProcedimiento"), 
-                    (int)registro.get("CodigoCategoria"), 
-                    (int)registro.get("IDPaciente"));
+                    (String)registro.get("DescripcionProcedimiento"));
             procedimientos.add(procedimie);
         }
         return procedimientos;

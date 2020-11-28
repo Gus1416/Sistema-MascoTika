@@ -10,21 +10,21 @@ public class Persona {
     private String Provincia;
     private String Canton;
     private String Distrito;
-    private String UbicacionGmaps;
+    //private String UbicacionGmaps;
     private String Email;
     private String NombreUsuario;
 
     public Persona() {
     }
 
-    public Persona(int Cedula, String Nombre, String Apellido, String Provincia, String Canton, String Distrito, String UbicacionGmaps, String Email, String NombreUsuario) {
+    public Persona(int Cedula, String Nombre, String Apellido, String Provincia, String Canton, String Distrito, String Email, String NombreUsuario) {
         this.Cedula = Cedula;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Provincia = Provincia;
         this.Canton = Canton;
         this.Distrito = Distrito;
-        this.UbicacionGmaps = UbicacionGmaps;
+        //this.UbicacionGmaps = UbicacionGmaps;
         this.Email = Email;
         this.NombreUsuario = NombreUsuario;
     }
@@ -125,16 +125,16 @@ public class Persona {
     /**
      * @return the UbicacionGmaps
      */
-    public String getUbicacionGmaps() {
+    /*public String getUbicacionGmaps() {
         return UbicacionGmaps;
-    }
+    }*/
 
     /**
      * @param UbicacionGmaps the UbicacionGmaps to set
      */
-    public void setUbicacionGmaps(String UbicacionGmaps) {
+    /*public void setUbicacionGmaps(String UbicacionGmaps) {
         this.UbicacionGmaps = UbicacionGmaps;
-    }
+    }*/
 
     /**
      * @return the Email

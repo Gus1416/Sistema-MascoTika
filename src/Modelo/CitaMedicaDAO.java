@@ -34,6 +34,7 @@ public class CitaMedicaDAO {
            citamedica = new CitaMedica ((String)registro.get("IDCitaMed"), (String)registro.get("Fecha"), 
                    (String)registro.get("Estado"), (int)registro.get("CedulaCliente"));
        }
+       
        return citamedica;
     }
     
@@ -59,6 +60,7 @@ public class CitaMedicaDAO {
                 (String)registro.get("Estado"), (int)registro.get("CedulaCliente"));
           citasmedicas.add(citamed);
        }
+        System.out.println(citasmedicas);
        return citasmedicas; 
     }
     

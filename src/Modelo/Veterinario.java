@@ -9,6 +9,8 @@ public class Veterinario {
     private int Calificacion;
     private String HorarioAtencion;
     private String SitioWeb;
+    private String Nombre;
+    private String Apellido;
 
     public Veterinario() {
     }
@@ -21,6 +23,17 @@ public class Veterinario {
         this.SitioWeb = SitioWeb;
     }
 
+    public Veterinario(int Cedula, String IDVet, int Calificacion, String HorarioAtencion, String SitioWeb, String Nombre, String Apellido) {
+        this.Cedula = Cedula;
+        this.IDVet = IDVet;
+        this.Calificacion = Calificacion;
+        this.HorarioAtencion = HorarioAtencion;
+        this.SitioWeb = SitioWeb;
+        this.Nombre = Nombre;
+        this.Apellido = Apellido;
+    }
+
+    
     /**
      * @return the Cedula
      */
@@ -89,5 +102,33 @@ public class Veterinario {
      */
     public void setSitioWeb(String SitioWeb) {
         this.SitioWeb = SitioWeb;
+    }
+
+    /**
+     * @return the Nombre
+     */
+    public String getNombre() {
+        return Nombre;
+    }
+
+    /**
+     * @param Nombre the Nombre to set
+     */
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    /**
+     * @return the Apellido
+     */
+    public String getApellido() {
+        return Apellido;
+    }
+
+    /**
+     * @param Apellido the Apellido to set
+     */
+    public void setApellido(String Apellido) {
+        this.Apellido = Apellido;
     }
 }
