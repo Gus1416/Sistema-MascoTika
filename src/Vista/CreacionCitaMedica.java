@@ -77,11 +77,16 @@ public class CreacionCitaMedica extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Estado");
 
+        jTextField1.setEditable(false);
+
+        jTextField2.setEditable(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
+
+        jTextField3.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

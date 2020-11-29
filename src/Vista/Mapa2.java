@@ -27,9 +27,6 @@ import Vista.*;
 
 
 public class Mapa2 extends javax.swing.JFrame {
-    
-
-
 
     public Mapa2() {
         ModificarHTML();
@@ -59,7 +56,8 @@ public class Mapa2 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Ruta Hacia Su Veterinario");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -92,12 +90,10 @@ public class Mapa2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
+       JOptionPane.showMessageDialog(rootPane, "Veterinario registrado");
+        this.setVisible(false);       
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    
-
-    
     /**
      * @param args the command line arguments
      */
@@ -166,7 +162,7 @@ private void open_site(){
             }
     });
     
-    browser.loadURL("C:\\HTMLGMaps\\simple_map2.html");
+    browser.loadURL("C:\\Users\\Gustavo\\Documents\\NetBeansProjects\\Sistema MascoTika\\HTMLGMaps\\simple_map2.html");
 }
     public void ModificarHTML(){
          
@@ -179,56 +175,124 @@ private void open_site(){
                 "<!DOCTYPE html>\n" +
 "<html>\n" +
 "  <head>\n" +
-"    <title>Travel Modes in Directions</title>\n" +
+"    <title>Distance Matrix Service</title>\n" +
 "    <script src=\"https://polyfill.io/v3/polyfill.min.js?features=default\"></script>\n" +
 "    <script\n" +
 "      src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyAybuV4kX7ogp97TusKeAuzXaCW_OoJ1Rg&callback=initMap&libraries=&v=weekly\"\n" +
 "      defer\n" +
 "    ></script>\n" +
 "    <style type=\"text/css\">\n" +
-"      /* Always set the map height explicitly to define the size of the div\n" +
-"       * element that contains the map. */\n" +
-"      #map {\n" +
-"        height: 100%;\n" +
-"      }\n" +
 "\n" +
-"      /* Optional: Makes the sample page fill the window. */\n" +
 "      html,\n" +
 "      body {\n" +
-"        height: 100%;\n" +
+"        height: 80%;\n" +
 "        margin: 0;\n" +
 "        padding: 0;\n" +
 "      }\n" +
 "\n" +
-"      #floating-panel {\n" +
-"        position: absolute;\n" +
-"        top: 10px;\n" +
-"        left: 25%;\n" +
-"        z-index: 5;\n" +
-"        background-color: #fff;\n" +
-"        padding: 5px;\n" +
-"        border: 1px solid #999;\n" +
-"        text-align: center;\n" +
-"        font-family: \"Roboto\", \"sans-serif\";\n" +
-"        line-height: 30px;\n" +
-"        padding-left: 10px;\n" +
+"      #map {\n" +
+"        height: 700px;\n" +
+"        width: 100%;\n" +
+"      }\n" +
+"\n" +
+"      #output {\n" +
+"        font-size: 40px;\n" +
 "      }\n" +
 "    </style>\n" +
 "    <script>\n" +
 "      function initMap() {\n" +
+"\n" +
 "        const directionsRenderer = new google.maps.DirectionsRenderer();\n" +
 "        const directionsService = new google.maps.DirectionsService();\n" +
+"        const bounds = new google.maps.LatLngBounds();\n" +
+"        const markersArray = [];\n" +
+"        const origin1 = { lat: "+ latCliente +", lng: "+ lonCliente +" };\n" +
+"        const destinationA = { lat: "+ latVeterinario +", lng: "+ lonVeterinario +" };\n" +
+"        const destinationIcon =\n" +
+"          \"https://chart.googleapis.com/chart?\" +\n" +
+"          \"chst=d_map_pin_letter&chld=D|FF0000|000000\";\n" +
+"        const originIcon =\n" +
+"          \"https://chart.googleapis.com/chart?\" +\n" +
+"          \"chst=d_map_pin_letter&chld=O|FFFF00|000000\";\n" +
 "        const map = new google.maps.Map(document.getElementById(\"map\"), {\n" +
-"          zoom: 14,\n" +
-"          center: { lat: 37.77, lng: -122.447 },\n" +
+"          center: { lat: 9.847481937010377, lng: -83.9407497023317 },\n" +
+"          zoom: 10,\n" +
 "        });\n" +
+"\n" +
 "        directionsRenderer.setMap(map);\n" +
 "        calculateAndDisplayRoute(directionsService, directionsRenderer);\n" +
 "        document.getElementById(\"mode\").addEventListener(\"change\", () => {\n" +
 "          calculateAndDisplayRoute(directionsService, directionsRenderer);\n" +
 "        });\n" +
+"        const geocoder = new google.maps.Geocoder();\n" +
+"        const service = new google.maps.DistanceMatrixService();\n" +
+"        service.getDistanceMatrix(\n" +
+"          {\n" +
+"            origins: [origin1],\n" +
+"            destinations: [destinationA],\n" +
+"            travelMode: google.maps.TravelMode.DRIVING,\n" +
+"            unitSystem: google.maps.UnitSystem.METRIC,\n" +
+"            avoidHighways: false,\n" +
+"            avoidTolls: false,\n" +
+"          },\n" +
+"          (response, status) => {\n" +
+"            if (status !== \"OK\") {\n" +
+"              alert(\"Error was: \" + status);\n" +
+"            } else {\n" +
+"              const originList = response.originAddresses;\n" +
+"              const destinationList = response.destinationAddresses;\n" +
+"              const outputDiv = document.getElementById(\"output\");\n" +
+"              outputDiv.innerHTML = \"\";\n" +
+"              deleteMarkers(markersArray);\n" +
+"\n" +
+"              const showGeocodedAddressOnMap = function (asDestination) {\n" +
+"                const icon = asDestination ? destinationIcon : originIcon;\n" +
+"\n" +
+"                return function (results, status) {\n" +
+"                  if (status === \"OK\") {\n" +
+"                    map.fitBounds(bounds.extend(results[0].geometry.location));\n" +
+"                    markersArray.push(\n" +
+"                      new google.maps.Marker({\n" +
+"                        map,\n" +
+"                        position: results[0].geometry.location,\n" +
+"                        icon: icon,\n" +
+"                      })\n" +
+"                    );\n" +
+"                  } else {\n" +
+"                    alert(\"Geocode was not successful due to: \" + status);\n" +
+"                  }\n" +
+"                };\n" +
+"              };\n" +
+"\n" +
+"              for (let i = 0; i < originList.length; i++) {\n" +
+"                const results = response.rows[i].elements;\n" +
+"                geocoder.geocode(\n" +
+"                  { address: originList[i] },\n" +
+"              \n" +
+"                );\n" +
+"\n" +
+"                for (let j = 0; j < results.length; j++) {\n" +
+"                  geocoder.geocode(\n" +
+"                    { address: destinationList[j] },\n" +
+"              \n" +
+"                  );\n" +
+"                  outputDiv.innerHTML +=\n" +
+"                    \"Duración estimada de la ruta: \" +\n" +
+"                    results[j].duration.text +\n" +
+"                    \"<br>\";\n" +
+"                }\n" +
+"              }\n" +
+"            }\n" +
+"          }\n" +
+"        );\n" +
 "      }\n" +
 "\n" +
+"      function deleteMarkers(markersArray) {\n" +
+"        for (let i = 0; i < markersArray.length; i++) {\n" +
+"          markersArray[i].setMap(null);\n" +
+"        }\n" +
+"        markersArray = [];\n" +
+"      }\n" +
 "      function calculateAndDisplayRoute(directionsService, directionsRenderer) {\n" +
 "        const selectedMode = document.getElementById(\"mode\").value;\n" +
 "        directionsService.route(\n" +
@@ -252,7 +316,7 @@ private void open_site(){
 "    </script>\n" +
 "  </head>\n" +
 "  <body>\n" +
-"    <div id=\"floating-panel\">\n" +
+"      <div id=\"floating-panel\">\n" +
 "      <b>Mode of Travel: </b>\n" +
 "      <select id=\"mode\">\n" +
 "        <option value=\"DRIVING\">Driving</option>\n" +
@@ -262,9 +326,17 @@ private void open_site(){
 "      </select>\n" +
 "    </div>\n" +
 "    <div id=\"map\"></div>\n" +
+"    <div id=\"right-panel\">\n" +
+"      <div id=\"inputs\">\n" +
+"        <pre>\n" +
+"        </pre>\n" +
+"      </div>\n" +
+"      <div id=\"output\"></div>\n" +
+"    </div>\n" +
+"    <div id=\"map\"></div>\n" +
 "  </body>\n" +
 "</html>";
-        File archivo = new File("C:\\HTMLGMaps\\simple_map2.html");
+        File archivo = new File("C:\\Users\\Gustavo\\Documents\\NetBeansProjects\\Sistema MascoTika\\HTMLGMaps\\simple_map2.html");
         try{
             BufferedWriter writer = new BufferedWriter(new FileWriter(archivo));
             writer.write(HTML);

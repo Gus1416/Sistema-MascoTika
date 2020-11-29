@@ -256,9 +256,9 @@ public class GestionCitasVet extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(73, 73, 73)
                 .addComponent(jButton5)
                 .addGap(35, 35, 35))
@@ -319,7 +319,7 @@ public class GestionCitasVet extends javax.swing.JInternalFrame {
 
     private void modPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modPendienteActionPerformed
         String idcitamedica = jTextField1.getText();
-        ActualizarCitaMedica actualizarCitaPendiente = new ActualizarCitaMedica(idcitamedica);
+        ActualizarCitaMedica actualizarCitaPendiente = new ActualizarCitaMedica();
         SistemaMascoTika.desktopPane.add(actualizarCitaPendiente);
         actualizarCitaPendiente.toFront();
         actualizarCitaPendiente.setVisible(true);
@@ -331,7 +331,7 @@ public class GestionCitasVet extends javax.swing.JInternalFrame {
 
     private void modAsignadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modAsignadaActionPerformed
        String idcitamedica = jTextField1.getText();
-        ActualizarCitaMedica actualizarCitaAsignada = new ActualizarCitaMedica(idcitamedica);
+        ActualizarCitaMedica actualizarCitaAsignada = new ActualizarCitaMedica();
         SistemaMascoTika.desktopPane.add(actualizarCitaAsignada);
         actualizarCitaAsignada.toFront();
         actualizarCitaAsignada.setVisible(true);

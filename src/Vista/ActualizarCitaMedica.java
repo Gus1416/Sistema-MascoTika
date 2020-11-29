@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import Modelo.CitaMedica;
 import Modelo.CitaMedicaDAO;
 import Modelo.Database;
+import Modelo.FacturaData;
+import Modelo.PDF;
 import Modelo.Persona;
 import Modelo.SendEmail;
 import java.util.ArrayList;
@@ -23,9 +25,12 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
     private String Nombre;
     private String Apellido;
     private String Email;
-    SendEmail mail = new SendEmail();
-    int enviarCorreo;
-    int citamed;
+    private String Procedimiento;
+    private String Categoria;
+    private String Veterinario;
+    private int Paciente;
+    private int MontoUnitario;
+    private int MontoADomicilio;
     
     
     public ActualizarCitaMedica() {
@@ -36,12 +41,36 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
     
     
     private String IDCitaMed;
-    public ActualizarCitaMedica(String IDCitaMed){
-        this.IDCitaMed=IDCitaMed;
-        initComponents();
-    }
+      
     
+   
     
+   public List obtenerRegistroFactura(String IDCitavet){
+ 
+        String query ="SELECT * FROM Veterinario, Procedimiento, [Cita Medica], CitaMedicaContieneProcedimientos, VeterinarioEjecutaProcedimiento WHERE Procedimiento.IDProcedimiento = VeterinarioEjecutaProcedimiento.IDProcedimiento AND Veterinario.IDVet = VeterinarioEjecutaProcedimiento.IDVet AND CitaMedicaContieneProcedimientos.IDCitaMed = [Cita Medica].IDCitaMed AND CitaMedicaContieneProcedimientos.IDProcedimiento = Procedimiento.IDProcedimiento AND [Cita Medica].IDCitaMed = '"+IDCitavet+"'         ";   
+        List<Map> registros = new Database().ejecutar(query);
+        List<FacturaData> search = new ArrayList();
+        for (Map registro : registros){
+            FacturaData   factura = new FacturaData (
+                    (String)registro.get("Tipo"), 
+                    (String)registro.get("NombreProcedimiento"), 
+                    (String)registro.get("IDVet"),
+                    (int)registro.get("IDPaciente"), 
+                    (int)registro.get("MontoUnitario"), 
+                     (int)registro.get("MontoServAdom"));
+                    search.add(factura);
+                    
+                    Procedimiento= factura.getProcedimiento() ;
+                    Categoria=factura.getCategoria();
+                    Veterinario=factura.getVeterinario();
+                    Paciente=factura.getPaciente();
+                    MontoUnitario=factura.getMontoUnitario();
+                    MontoADomicilio=factura.getMontoADomicilio();
+          
+        }        
+         return search  ;     
+    }  
+ 
    public List obtenerRegistros(int Cedula){
         String q = "SELECT * FROM Persona WHERE Cedula=" + Cedula;
         List<Map> registros = new Database().ejecutar(q);
@@ -86,6 +115,11 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         jLabel1.setText("Digite la informacion de la Cita");
 
         jLabel2.setText("ID Cita Medica");
@@ -121,29 +155,27 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(28, 28, 28)
-                        .addComponent(jTextField4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(70, 70, 70)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(29, 29, 29)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(75, 75, 75)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(15, 15, 15))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(28, 28, 28)
+                            .addComponent(jTextField4))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(70, 70, 70)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(29, 29, 29)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(75, 75, 75)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,9 +198,9 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,7 +209,7 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      
         
-        String IDCitaMed= this.IDCitaMed;
+        String IDCitaMed= jTextField1.getText();
         String Fecha = jTextField2.getText();
         String Estado = jTextField3.getText();
         String CedulaCliente = jTextField4.getText();
@@ -187,40 +219,37 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
         System.out.println(Estado);
         System.out.println(CedulaCliente);
         
-        
-        
         List iniciarvariables = this.obtenerRegistros(Integer.parseInt(CedulaCliente));
-           
-        
-        
+        List generarvarfactura= this.obtenerRegistroFactura(IDCitaMed);
+              
         if(IDCitaMed.equals("") || Fecha.equals("") || Estado.equals("") || CedulaCliente.equals("")){
             JOptionPane.showMessageDialog(rootPane, "Por Favor llene todos los campos mi bro");
             return;
         }
         
-        if (IDCitaMed.equals("Asignada")) {
-            enviarCorreo = mail.EnvioMail(Email, Nombre, Apellido, Fecha);
-            citamed = new CitaMedicaDAO().actualizar(IDCitaMed, Fecha, Estado, Integer.parseInt(CedulaCliente));
-            JOptionPane.showMessageDialog(rootPane, "Informacion de la cita medica con ID : " + IDCitaMed + " actualizada");
-
-
+        if(Estado.equals("Asignada")){
+           PDF facturar = new PDF();
+           facturar.Facturar(Nombre, Apellido, Procedimiento, Categoria, Veterinario, Paciente, MontoUnitario, MontoADomicilio);
+            
+            int citamed = new CitaMedicaDAO().actualizar(IDCitaMed, Fecha, Estado,Integer.parseInt(CedulaCliente));   
+            JOptionPane.showMessageDialog(rootPane, "Informacion de la cita medica con ID : "+IDCitaMed+" actualizada");    
+         
+            
             // int Ced =  this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getCedula();
            // String name = this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getNombre();
             //String apellido= this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getApellido();
            // String correo =   this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getEmail();
             
-        System.out.println(Nombre);
-        System.out.println(Apellido);
-        System.out.println(Email);
-        System.out.println(Fecha);
             
+           
+            SendEmail mail = new SendEmail();
             mail.EnvioMail(Email, Nombre, Apellido, Fecha);
             JOptionPane.showMessageDialog(rootPane, "Informacion de la cita medica con ID : "+IDCitaMed+" actualizada");
         
         }
         
         // Por si el mae le pone algun estado distinto
-        citamed = new CitaMedicaDAO().actualizar(IDCitaMed, Fecha, Estado,Integer.parseInt(CedulaCliente));
+        int citamed = new CitaMedicaDAO().actualizar(IDCitaMed, Fecha, Estado,Integer.parseInt(CedulaCliente));
         
         if (citamed== 0){
            JOptionPane.showMessageDialog(rootPane, "No se pudo actualizar la informacion :(");

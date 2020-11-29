@@ -12,6 +12,8 @@ import javax.swing.table.DefaultTableModel;
 import Modelo.*;
 import javax.swing.JOptionPane;
 import Vista.*;
+import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -21,7 +23,8 @@ public class SolicitarCita extends javax.swing.JInternalFrame {
 
     public static String IDProcedimiento;
     public static String IDVet;
-    private Mapa2 coordenadas;
+    public static String CedulaCliente;
+    //private Mapa2 coordenadas;
     
     public static String latCliente;
     public static String lonCliente;
@@ -176,6 +179,11 @@ public class SolicitarCita extends javax.swing.JInternalFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En clínica", "A domicilio" }));
 
         jButton3.setText("Finalizar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Digite su cedula");
 
@@ -246,6 +254,7 @@ public class SolicitarCita extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        int fila = jTable1.getSelectedRow();      
        this.IDProcedimiento = (String)jTable1.getValueAt(fila, 1);
+       System.out.println(IDProcedimiento + " " + IDProcedimiento.getClass().getSimpleName());
        this.ObtenerDatosVet(IDProcedimiento);
        JOptionPane.showMessageDialog(rootPane, "Procedimeinto/Servicio registrado");
        
@@ -254,42 +263,47 @@ public class SolicitarCita extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int fila = jTable2.getSelectedRow();
-        System.out.println(fila + " num fila seleccionada");
-        
-        
+             
         this.IDVet = (String)jTable2.getValueAt(fila, 1); 
-        System.out.println(IDVet + " obtenido de la tabla 2");
+
         
-        String CedulaVet = (String)jTable2.getValueAt(fila, 0);
-        System.out.println(fila + " verifcicar num fila seleccionada");
-        System.out.println(CedulaVet + " obtenido de la tabla 2");
-        
-        String CedulaCliente = jTextField1.getText();
-        System.out.println(CedulaCliente + " obteneido del textfield");
+        String CedulaVet = (String)jTable2.getValueAt(fila, 0);    
+        this.CedulaCliente = jTextField1.getText();
  
         
-        SolicitarCita.latCliente = this.Latitud(Integer.parseInt(CedulaCliente));
-        System.out.println(latCliente + " latCLiente");
-        
-        SolicitarCita.lonCliente = this.Longitud(Integer.parseInt(CedulaCliente));
-        System.out.println(lonCliente + " lonCliente");
-        
-        SolicitarCita.latVet = this.Latitud(Integer.parseInt(CedulaVet));
-        System.out.println(latVet + " latVet");
-        
+        SolicitarCita.latCliente = this.Latitud(Integer.parseInt(CedulaCliente));   
+        SolicitarCita.lonCliente = this.Longitud(Integer.parseInt(CedulaCliente));  
+        SolicitarCita.latVet = this.Latitud(Integer.parseInt(CedulaVet));        
         SolicitarCita.lonVet = this.Longitud(Integer.parseInt(CedulaVet));
-        System.out.println(lonVet + " lonVet");
-        
-        
+   
+           
         Mapa2 mapa = new Mapa2();
         mapa.setVisible(true);
-        
-        
-        
-        
-  
-        JOptionPane.showMessageDialog(rootPane, "Veterinario registrado");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int randomnum = ThreadLocalRandom.current().nextInt(01, 98 + 1);
+        String IDCitaMed = "CT" + randomnum;
+
+        Date fecha = java.util.Calendar.getInstance().getTime();
+        String Fecha = fecha.toString();
+        
+        CitaMedica cita = new CitaMedicaDAO().insertar(IDCitaMed, Fecha, "Pendiente", Integer.parseInt(CedulaCliente));        
+        if (cita == null){
+           JOptionPane.showMessageDialog(rootPane, "No se pudo registrar la cita:( ");
+           return; 
+        }
+        
+        CitaMed_Procedimiento cita_procedimiento = new CitaMed_ProcedimientoDAO().insertar(IDProcedimiento, IDCitaMed);
+        if (cita_procedimiento == null){
+           JOptionPane.showMessageDialog(rootPane, "No se pudo registrar la cita:( ");
+           return;
+        }
+
+        JOptionPane.showMessageDialog(rootPane, "Nueva Cita registrada");
+        this.setVisible(false);
+
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static String getLatCliente() {
         return latCliente;

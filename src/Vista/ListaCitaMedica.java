@@ -193,7 +193,7 @@ public class ListaCitaMedica extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String idcitamedica = jTextField1.getText();
-        ActualizarCitaMedica actualizarCitaMedica = new ActualizarCitaMedica(idcitamedica);
+        ActualizarCitaMedica actualizarCitaMedica = new ActualizarCitaMedica();
         SistemaMascoTika.desktopPane.add(actualizarCitaMedica);
         actualizarCitaMedica.toFront();
         actualizarCitaMedica.setVisible(true);
@@ -203,7 +203,7 @@ public class ListaCitaMedica extends javax.swing.JInternalFrame {
        String  IDCitaMed = jTextField1.getText();
         int citamed = new CitaMedicaDAO().eliminar(IDCitaMed);
         if (citamed == 0){
-           JOptionPane.showMessageDialog(rootPane, "No se pudo eliminar la cita MI BROOOOOOO HAHAHA inutil");
+           JOptionPane.showMessageDialog(rootPane, "No se pudo eliminar la cita");
            return; 
         }
         JOptionPane.showMessageDialog(rootPane, "Se elimino al cita medica con ID: "+ IDCitaMed);

@@ -97,11 +97,112 @@ public class CitaMedicaDAO {
        return citasmedicas; 
     }
     
+    public List CitasPorCliente (int CedulaCliente){
+        String q = "SELECT [Cita Medica].IDCitaMed, [Cita Medica].Fecha, [Cita Medica].Estado, Procedimiento.NombreProcedimiento, Categoria.NombreCategoria, Persona.Nombre" +
+" FROM [Cita Medica], Procedimiento, Categoria, CitaMedicaContieneProcedimientos, Persona, Veterinario, VeterinarioEjecutaProcedimiento" +
+" WHERE [Cita Medica].IDCitaMed = CitaMedicaContieneProcedimientos.IDCitaMed" +
+" AND CitaMedicaContieneProcedimientos.IDProcedimiento = Procedimiento.IDProcedimiento" +
+" AND Procedimiento.CodigoCategoria = Categoria.CodigoCategoria" +
+" AND Procedimiento.IDProcedimiento = VeterinarioEjecutaProcedimiento.IDProcedimiento" +
+" AND VeterinarioEjecutaProcedimiento.IDVet = Veterinario.IDVet" +
+" AND Veterinario.Cedula = Persona.Cedula" +
+" AND [Cita Medica].CedulaCliente =" + CedulaCliente;
+        List<Map> regis = new Database().ejecutar(q);
+        List<CitaMedica> citasmedicas = new ArrayList();
+        for (Map registro : regis) {
+            CitaMedica citamedica = new CitaMedica(
+                    (String) registro.get("IDCitaMed"),
+                    (String) registro.get("Fecha"),
+                    (String) registro.get("Estado"),
+                    (String) registro.get("Nombre"),
+                    (String) registro.get("NombreCategoria"),
+                    (String) registro.get("NombreProcedimiento")
+            );
+            citasmedicas.add(citamedica);
+        }
+        return citasmedicas;
+    }
     
+    public List CitasPorEstado(int Cedula, String Estado) {
+        String q = "SELECT [Cita Medica].IDCitaMed, [Cita Medica].Fecha, [Cita Medica].Estado, Procedimiento.NombreProcedimiento, Categoria.NombreCategoria, Persona.Nombre"
+                + " FROM [Cita Medica], Procedimiento, Categoria, CitaMedicaContieneProcedimientos, Persona, Veterinario, VeterinarioEjecutaProcedimiento"
+                + " WHERE [Cita Medica].IDCitaMed = CitaMedicaContieneProcedimientos.IDCitaMed"
+                + " AND CitaMedicaContieneProcedimientos.IDProcedimiento = Procedimiento.IDProcedimiento"
+                + " AND Procedimiento.CodigoCategoria = Categoria.CodigoCategoria"
+                + " AND Procedimiento.IDProcedimiento = VeterinarioEjecutaProcedimiento.IDProcedimiento"
+                + " AND VeterinarioEjecutaProcedimiento.IDVet = Veterinario.IDVet"
+                + " AND Veterinario.Cedula = Persona.Cedula"
+                + " AND [Cita Medica].Estado = ' " + Estado + " '"
+                + " AND [Cita Medica].CedulaCliente =" + Cedula;
+        List<Map> regis = new Database().ejecutar(q);
+        List<CitaMedica> citasmedicas = new ArrayList();
+        for (Map registro : regis) {
+            CitaMedica citamedica = new CitaMedica(
+                    (String) registro.get("IDCitaMed"),
+                    (String) registro.get("Fecha"),
+                    (String) registro.get("Estado"),
+                    (String) registro.get("Nombre"),
+                    (String) registro.get("NombreCategoria"),
+                    (String) registro.get("NombreProcedimiento")
+            );
+            citasmedicas.add(citamedica);
+        }
+        return citasmedicas;
+    }
     
+    public List CitasPorCategoria(int Cedula, String Categoria) {
+        String q = "SELECT [Cita Medica].IDCitaMed, [Cita Medica].Fecha, [Cita Medica].Estado, Procedimiento.NombreProcedimiento, Categoria.NombreCategoria, Persona.Nombre"
+                + " FROM [Cita Medica], Procedimiento, Categoria, CitaMedicaContieneProcedimientos, Persona, Veterinario, VeterinarioEjecutaProcedimiento"
+                + " WHERE [Cita Medica].IDCitaMed = CitaMedicaContieneProcedimientos.IDCitaMed"
+                + " AND CitaMedicaContieneProcedimientos.IDProcedimiento = Procedimiento.IDProcedimiento"
+                + " AND Procedimiento.CodigoCategoria = Categoria.CodigoCategoria"
+                + " AND Procedimiento.IDProcedimiento = VeterinarioEjecutaProcedimiento.IDProcedimiento"
+                + " AND VeterinarioEjecutaProcedimiento.IDVet = Veterinario.IDVet"
+                + " AND Veterinario.Cedula = Persona.Cedula"
+                + " AND Categoria.NombreCategoria = '" + Categoria + "'"
+                + " AND [Cita Medica].CedulaCliente =" + Cedula;
+        List<Map> regis = new Database().ejecutar(q);
+        List<CitaMedica> citasmedicas = new ArrayList();
+        for (Map registro : regis) {
+            CitaMedica citamedica = new CitaMedica(
+                    (String) registro.get("IDCitaMed"),
+                    (String) registro.get("Fecha"),
+                    (String) registro.get("Estado"),
+                    (String) registro.get("Nombre"),
+                    (String) registro.get("NombreCategoria"),
+                    (String) registro.get("NombreProcedimiento")
+            );
+            citasmedicas.add(citamedica);
+        }
+        return citasmedicas;
+    }
     
-    
-    
+    public List CitasPorVeterinario(int Cedula, String Veterinario) {
+        String q = "SELECT [Cita Medica].IDCitaMed, [Cita Medica].Fecha, [Cita Medica].Estado, Procedimiento.NombreProcedimiento, Categoria.NombreCategoria, Persona.Nombre"
+                + " FROM [Cita Medica], Procedimiento, Categoria, CitaMedicaContieneProcedimientos, Persona, Veterinario, VeterinarioEjecutaProcedimiento"
+                + " WHERE [Cita Medica].IDCitaMed = CitaMedicaContieneProcedimientos.IDCitaMed"
+                + " AND CitaMedicaContieneProcedimientos.IDProcedimiento = Procedimiento.IDProcedimiento"
+                + " AND Procedimiento.CodigoCategoria = Categoria.CodigoCategoria"
+                + " AND Procedimiento.IDProcedimiento = VeterinarioEjecutaProcedimiento.IDProcedimiento"
+                + " AND VeterinarioEjecutaProcedimiento.IDVet = Veterinario.IDVet"
+                + " AND Veterinario.Cedula = Persona.Cedula"
+                + " AND Persona.Nombre = '" + Veterinario + "'"
+                + " AND [Cita Medica].CedulaCliente =" + Cedula;
+        List<Map> regis = new Database().ejecutar(q);
+        List<CitaMedica> citasmedicas = new ArrayList();
+        for (Map registro : regis) {
+            CitaMedica citamedica = new CitaMedica(
+                    (String) registro.get("IDCitaMed"),
+                    (String) registro.get("Fecha"),
+                    (String) registro.get("Estado"),
+                    (String) registro.get("Nombre"),
+                    (String) registro.get("NombreCategoria"),
+                    (String) registro.get("NombreProcedimiento")
+            );
+            citasmedicas.add(citamedica);
+        }
+        return citasmedicas;
+    }
     
     
     

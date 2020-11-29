@@ -200,7 +200,7 @@ private void open_site(){
             }
     });
     
-    browser.loadURL("C:\\HTMLGMaps\\simple_map.html");
+    browser.loadURL("C:\\Users\\Gustavo\\Documents\\NetBeansProjects\\Sistema MascoTika\\HTMLGMaps\\simple_map.html");
 }
 
 }
