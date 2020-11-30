@@ -39,6 +39,11 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     public SistemaMascoTika() {
         initComponents();
         setTitle("Sistema MascoTika");
+        
+        jButton3.setEnabled(false);
+        jButton4.setEnabled(false);
+        jButton2.setEnabled(false);
+        
         listaVeterinarios = new ListaVeterinarios();
         nuevoVeterinario = new NuevoVeterinario();
         listaProcedimientos = new ListaProcedimientos();
@@ -214,9 +219,9 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    public static javax.swing.JButton jButton2;
+    public static javax.swing.JButton jButton3;
+    public static javax.swing.JButton jButton4;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
