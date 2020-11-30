@@ -225,12 +225,13 @@ public class NuevoUsuario extends javax.swing.JInternalFrame {
         String Rol = jTextField9.getText();
         String Contraseña = jTextField11.getText();
         String Email = jTextField12.getText();
+        String Key = "masterkey";
         
         if (Nombre.equals("") || Apellido.equals("") || Cedula.equals("") || Apellido.equals("") || Provincia.equals("") || Canton.equals("") || Distrito.equals("") || Usuario.equals("") || Contraseña.equals("") || Rol.equals("") ){
             JOptionPane.showMessageDialog(rootPane, "Todos los campos son obligatorios");
             return;
         }
-        Usuario usuario = new UsuarioDAO().insertar(Usuario, Contraseña, Rol);
+        Usuario usuario = new UsuarioDAO().insertar(Usuario, Contraseña, Rol, Key);
         if (usuario == null){
             JOptionPane.showMessageDialog(rootPane, "No se pudo registrar el usuario");
            return;

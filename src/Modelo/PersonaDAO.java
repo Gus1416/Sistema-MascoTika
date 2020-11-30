@@ -83,6 +83,8 @@ public class PersonaDAO {
         return personas;
     }
     
+   
+    
     public int eliminar(int Cedula){
         String q = "DELETE FROM Persona WHERE Cedula=" + Cedula;
         return new Database().actualizar(q);

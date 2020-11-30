@@ -29,13 +29,8 @@ public class Persona {
         this.NombreUsuario = NombreUsuario;
     }
 
-    /*Persona(int i, String string, String string0, String string1, String string2, String string3, String string4) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    Persona(int i, String string, int i0, String string0, int i1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
+    
+    
 
     
     /**

@@ -9,16 +9,10 @@ import Modelo.VeterinarioDAO;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Sammy Guergachi <sguergachi at gmail.com>
- */
+
 public class RegistroVet extends javax.swing.JInternalFrame {
 
-   /* private Mapa mapa;
-    /**
-     * Creates new form RegistroVet
-     */
+
     public RegistroVet() {
         initComponents();
     }
@@ -307,6 +301,7 @@ public class RegistroVet extends javax.swing.JInternalFrame {
 
             //Todo lo que va a RedesSocialesVeterinario
             String RedesSociales = jTextField19.getText();
+            String key = "masterkey";
    
             if (Cedula.equals("") || 
                     IDVet.equals("") || 
@@ -325,7 +320,7 @@ public class RegistroVet extends javax.swing.JInternalFrame {
                 return;
             }
             
-            Usuario usuario = new UsuarioDAO().insertar(NombreUsuario, Password, Rol);
+            Usuario usuario = new UsuarioDAO().insertar(NombreUsuario, Password, Rol,key);
             System.out.println("usuario");
             if (usuario == null) {
                 JOptionPane.showMessageDialog(rootPane, "No se pudo registrar el nuevo veterinario");

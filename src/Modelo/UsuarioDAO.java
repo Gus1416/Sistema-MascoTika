@@ -25,11 +25,8 @@ import java.util.*;
  */
 public class UsuarioDAO {
   
-    public Usuario insertar(String NombreUsuario,String Contraseña, String Rol){
-        String q= "INSERT INTO Usuario VALUES('"
-                + NombreUsuario + "','"
-                + Contraseña + "','"
-                + Rol + "')";
+    public Usuario insertar(String NombreUsuario,String Contraseña, String Rol, String key){
+        String q= "INSERT INTO Usuario VALUES ('"+ NombreUsuario +"','"+ Rol +"',ENCRYPTBYPASSPHRASE('"+ key +"','"+ Contraseña +"'))";
         
         if  (new Database().actualizar(q) > 0 ){                  
             return new Usuario(NombreUsuario,Contraseña,Rol);          // Entonces le mando los datos a la tabla  
@@ -39,31 +36,32 @@ public class UsuarioDAO {
     
     public int actualizar(String NombreUsuario,String Contraseña, String Rol){
         String q= " UPDATE Usuario SET Contraseña='"
-                + Contraseña + "', Rol='"
+               + Contraseña + "', Rol='"
                 + Rol + " ' WHERE NombreUsuario="+"'"+NombreUsuario+"'";     
         return new Database().actualizar(q);    
     }
        
-   public Usuario obtenerRegistro(String Rol, String NombreUsuario, String Password){      //// Hacer una consulta con unicamente el ID del procedimiento
-       System.out.println(Rol);
-       System.out.println(NombreUsuario);
-       System.out.println(Password);
-       String q= "SELECT * FROM Usuario WHERE Rol='"
-                + Rol + "' AND NombreUsuario = '"+ NombreUsuario + "' "
-                + "AND Contraseña = '"+Password +"'";
-        List <Map> registros = new Database().ejecutar(q);                         //Lista que guarda los registros de la tabla  
+    public Usuario obtenerRegistro(String Rol, String NombreUsuario, String Password, String key) {             /// ACA TENGO QUE DESENCRIPTAR
+        System.out.println(Rol);
+        System.out.println(NombreUsuario);
+        System.out.println(Password);
+        String q = "SELECT NombreUsuario, Rol, CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('"+ key +"',Contraseña))"
+                + " FROM Usuario"
+                + " WHERE NombreUsuario = '"+ NombreUsuario +"'"
+                + " AND Rol = '"+ Rol +"'";
+        List<Map> registros = new Database().ejecutar(q);                         //Lista que guarda los registros de la tabla  
         Usuario usuario = null;
-        for(Map registro: registros){
+        for (Map registro : registros) {
             usuario = new Usuario(
-                    (String)registro.get("NombreUsuario"), 
-                    (String)registro.get("Contraseña"),
-                    (String)registro.get("Rol"));
+                    (String) registro.get("NombreUsuario"),
+                    (String) registro.get("Contraseña"),
+                    (String) registro.get("Rol"));
         }
         return usuario;                          // si entra bien al for entonces el cliente es agarrado de la base de datos y lo retorna
-    
+
     }
 
-    public List obtenerRegistros(){                     /// traerse todos los procedimientos 
+    public List obtenerRegistros(){                     
         String q = "SELECT * FROM Usuario ";
         List <Map>  registros = new Database().ejecutar(q);  
         List <Usuario> usuarios = new ArrayList();

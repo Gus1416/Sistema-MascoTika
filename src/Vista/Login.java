@@ -6,6 +6,7 @@ import Modelo.Usuario;
 import Modelo.UsuarioDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
+import Vista.*;
 
 public class Login extends javax.swing.JInternalFrame {
 
@@ -36,9 +37,9 @@ public class Login extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         jMenu1.setText("jMenu1");
@@ -101,11 +102,11 @@ public class Login extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField2)
-                            .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(54, 54, 54))))
@@ -113,14 +114,14 @@ public class Login extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -142,19 +143,19 @@ public class Login extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String USERNAME = jTextField1.getText();
-        String PASSWORD = jTextField2.getText();
+        String PASSWORD = jPasswordField1.getText();
         String ROLE = (String) jComboBox1.getSelectedItem();
         String key = "masterkey.exe";
+        
 
-        Usuario user = new UsuarioDAO().obtenerRegistro(ROLE, USERNAME, PASSWORD);
-
+        Usuario user = new UsuarioDAO().obtenerRegistro(ROLE, USERNAME, PASSWORD,key);
         if (user == null) {
             JOptionPane.showMessageDialog(rootPane, "Este usuario no esta registrado, registrelo!");
             return;
         }
 
         if (ROLE.equalsIgnoreCase("Veterinario")) {
-            if (user.getNombreUsuario().equals(USERNAME) && user.getContraseña().equals(PASSWORD) && user.getRol().equals(ROLE)) {
+            if (user.getNombreUsuario().equals(USERNAME) && user.getRol().equals(ROLE)) {
                 SistemaMascoTika.jButton4.setEnabled(true);
                 SistemaMascoTika.jButton2.setEnabled(false);
                 SistemaMascoTika.jButton3.setEnabled(false);
@@ -167,7 +168,7 @@ public class Login extends javax.swing.JInternalFrame {
         }
 
         if (ROLE.equalsIgnoreCase("Cliente")) {
-            if (user.getNombreUsuario().equals(USERNAME) && user.getContraseña().equals(PASSWORD) && user.getRol().equals(ROLE)) {
+            if (user.getNombreUsuario().equals(USERNAME) && user.getRol().equals(ROLE)) {               
                 SistemaMascoTika.jButton2.setEnabled(true);
                 SistemaMascoTika.jButton4.setEnabled(false);
                 SistemaMascoTika.jButton3.setEnabled(false);
@@ -179,7 +180,7 @@ public class Login extends javax.swing.JInternalFrame {
         }
 
         if (ROLE.equalsIgnoreCase("Administrador")) {
-            if (user.getNombreUsuario().equals(USERNAME) && user.getContraseña().equals(PASSWORD) && user.getRol().equals(ROLE)) {
+            if (user.getNombreUsuario().equals(USERNAME) && user.getRol().equals(ROLE)) {
                 SistemaMascoTika.jButton3.setEnabled(true);
                 SistemaMascoTika.jButton2.setEnabled(false);
                 SistemaMascoTika.jButton4.setEnabled(false);
@@ -231,8 +232,8 @@ public class Login extends javax.swing.JInternalFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

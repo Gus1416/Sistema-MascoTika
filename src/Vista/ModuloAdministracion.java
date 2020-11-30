@@ -95,6 +95,11 @@ public class ModuloAdministracion extends javax.swing.JInternalFrame {
         });
 
         jButton9.setText("Nuevo Administrador");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Gestión de Citas Médicas");
@@ -227,6 +232,13 @@ public class ModuloAdministracion extends javax.swing.JInternalFrame {
         listaCita.toFront();
         listaCita.setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        NuevoAdmin admin = new NuevoAdmin();
+        SistemaMascoTika.desktopPane.add(admin);
+        admin.toFront();
+        admin.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

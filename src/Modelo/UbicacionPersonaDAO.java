@@ -30,7 +30,6 @@ public class UbicacionPersonaDAO {
                    UbicacionPersona ubicacionPersona = new UbicacionPersona (
                    (String)registro.get("Latitud"));
                    ubicacionesPersona.add(ubicacionPersona);
-                   System.out.println(registro.get("Latitud"));
        } 
        return ubicacionesPersona; 
     }
@@ -42,8 +41,7 @@ public class UbicacionPersonaDAO {
         for (Map registro : regis){
                    UbicacionPersona ubicacionPersona = new UbicacionPersona (
                    (String)registro.get("Longitud"), 1);
-                   ubicacionesPersona.add(ubicacionPersona);   
-                   System.out.println("Longitud");
+                   ubicacionesPersona.add(ubicacionPersona);
        } 
        
        return ubicacionesPersona; 
