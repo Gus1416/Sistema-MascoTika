@@ -24,6 +24,13 @@ public class VeterinarioDAO {
                 + Cedula;
         return new Database().actualizar(q);
     }
+   
+    public int actualizarCalificacion(String IDVet, int Calificacion) {
+        String q = "UPDATE Veterinario SET Calificacion = " + Calificacion
+                + " WHERE IDVet = '"+ IDVet +"'";
+        return new Database().actualizar(q);
+    }
+    
     
     public Veterinario obtenerRegistro(int Cedula){
        String q = "SELECT * FROM Veterinario WHERE Cedula="
@@ -109,6 +116,21 @@ public class VeterinarioDAO {
                     (String)registro.get("SitioWeb"),
                     (String)registro.get("Nombre"),
                     (String)registro.get("Apellido")
+            );
+            veterinarios.add(veterinario);
+        }
+        return veterinarios;
+    }
+    
+    public List ObtenerIDVet(String NombreUsuario) {
+        String q = "SELECT IDVet FROM Persona, Veterinario"
+                + " WHERE Persona.Cedula = Veterinario.Cedula"
+                + " AND Persona.NombreUsuario='"+NombreUsuario+"'";
+        List<Map> registros = new Database().ejecutar(q);
+        List<Veterinario> veterinarios = new ArrayList();
+        for (Map registro : registros){
+            Veterinario veterinario = new Veterinario(
+                    (String)registro.get("IDVet")
             );
             veterinarios.add(veterinario);
         }

@@ -174,7 +174,7 @@ private int CodigoCategoria;
            JOptionPane.showMessageDialog(rootPane, "No se pudo actualizar la informacion");
            return; 
         }
-        JOptionPane.showMessageDialog(rootPane, "Informacion del veterinario cedula "+CodigoCategoria+" actualizada");
+        JOptionPane.showMessageDialog(rootPane, "Informacion de la Categoría "+CodigoCategoria+" actualizada");
         //jTextField1.setText("");
         jTextField3.setText("");
         jTextField4.setText("");

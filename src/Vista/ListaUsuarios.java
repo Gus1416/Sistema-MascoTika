@@ -25,10 +25,10 @@ public class ListaUsuarios extends javax.swing.JInternalFrame {
     public void ObtenerDatos(){
         List<Usuario> usuarios = new UsuarioDAO().obtenerRegistros();
         DefaultTableModel modelo = new DefaultTableModel();
-        String[] columnas = {"NombreUsuario", "Contraseña", "Rol"};
+        String[] columnas = {"NombreUsuario", "Rol"};
         modelo.setColumnIdentifiers(columnas);
         for (Usuario usuario : usuarios){
-            String[] renglon = {usuario.getNombreUsuario(), 
+            String[] renglon = {usuario.getNombreUsuario(),
                 usuario.getContraseña(), 
                 usuario.getRol()};
             modelo.addRow(renglon);
@@ -37,13 +37,12 @@ public class ListaUsuarios extends javax.swing.JInternalFrame {
     }
     
     public void ObtenerDatosRol(String Rol){
-        List<Usuario> usuarios = new UsuarioDAO().obtenerRegistrosRol(Rol);
+        List<Usuario> usuarios = new UsuarioDAO().obtenerRegistrosRol(Rol, "masterkey");
         DefaultTableModel modelo = new DefaultTableModel();
-        String[] columnas = {"NombreUsuario", "Contraseña", "Rol"};
+        String[] columnas = {"NombreUsuario", "Rol"};
         modelo.setColumnIdentifiers(columnas);
         for (Usuario usuario : usuarios){
             String[] renglon = {usuario.getNombreUsuario(), 
-                usuario.getContraseña(), 
                 usuario.getRol()};
             modelo.addRow(renglon);
         }
@@ -51,13 +50,12 @@ public class ListaUsuarios extends javax.swing.JInternalFrame {
     }
     
     public void ObtenerDatosUsuario(String NombreUsuario){
-        List<Usuario> usuarios = new UsuarioDAO().obtenerRegistrosUsuario(NombreUsuario);
+        List<Usuario> usuarios = new UsuarioDAO().obtenerRegistrosUsuario(NombreUsuario, "masterkey");
         DefaultTableModel modelo = new DefaultTableModel();
-        String[] columnas = {"NombreUsuario", "Contraseña", "Rol"};
+        String[] columnas = {"NombreUsuario", "Rol"};
         modelo.setColumnIdentifiers(columnas);
         for (Usuario usuario : usuarios){
-            String[] renglon = {usuario.getNombreUsuario(), 
-                usuario.getContraseña(), 
+            String[] renglon = {usuario.getNombreUsuario(),
                 usuario.getRol()};
             modelo.addRow(renglon);
         }

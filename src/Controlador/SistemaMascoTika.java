@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
-
 import Vista.*;
 
 /**
- *
- * @author Gustavo
+ *Ventana principal del Sistema, desde acá se accede a los módulos
+ * @author Gustavo, Sebastián
  */
 public class SistemaMascoTika extends javax.swing.JFrame {
     
@@ -33,8 +27,9 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     private Filtros filtros;
     private ModuloAdministracion moduloAdministracion;
     private ModuloVeterinarios moduloVeterinarios;
+    
     /**
-     * Creates new form SistemaMascoTika
+     * Crea un Form para la ventana principal
      */
     public SistemaMascoTika() {
         initComponents();
@@ -64,9 +59,7 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         filtros = new Filtros();
         moduloAdministracion = new ModuloAdministracion();
         moduloVeterinarios = new ModuloVeterinarios();
-        
-        
-        
+          
         //Agregamos los frames internos al desktop pane
         desktopPane.add(listaVeterinarios);
         desktopPane.add(nuevoVeterinario);
@@ -90,7 +83,7 @@ public class SistemaMascoTika extends javax.swing.JFrame {
         desktopPane.add(moduloVeterinarios);
     }
 
-
+    //Botones de la ventana principal
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -182,6 +175,7 @@ public class SistemaMascoTika extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
+     * Método main para la ventana principal
      * @param args the command line arguments
      */
     public static void main(String args[]) {

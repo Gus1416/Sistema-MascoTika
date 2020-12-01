@@ -181,10 +181,14 @@ public class ModuloAdministracion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        NuevoVeterinario nuevoVeterinario = new NuevoVeterinario();
+        /*NuevoVeterinario nuevoVeterinario = new NuevoVeterinario();
         SistemaMascoTika.desktopPane.add(nuevoVeterinario);
         nuevoVeterinario.toFront();
-        nuevoVeterinario.setVisible(true);
+        nuevoVeterinario.setVisible(true);*/
+        RegistroVet registro = new RegistroVet();
+        SistemaMascoTika.desktopPane.add(registro);
+        registro.toFront();
+        registro.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

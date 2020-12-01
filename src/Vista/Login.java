@@ -12,6 +12,7 @@ public class Login extends javax.swing.JInternalFrame {
 
     //private RegistroCliente    registrocliente;
     private RegistroVet vetregister;
+    public static String nombreUsuario;
 
     public Login() {
         initComponents();
@@ -155,6 +156,7 @@ public class Login extends javax.swing.JInternalFrame {
         }
 
         if (ROLE.equalsIgnoreCase("Veterinario")) {
+            nombreUsuario = USERNAME;
             if (user.getNombreUsuario().equals(USERNAME) && user.getRol().equals(ROLE)) {
                 SistemaMascoTika.jButton4.setEnabled(true);
                 SistemaMascoTika.jButton2.setEnabled(false);

@@ -33,6 +33,10 @@ public class Veterinario {
         this.Apellido = Apellido;
     }
 
+    public Veterinario(String IDVet) {
+        this.IDVet = IDVet;
+    }
+
     
     /**
      * @return the Cedula

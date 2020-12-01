@@ -23,12 +23,12 @@ public class ProcedimientoDAO {
      * @param idpaciente
      * @return
      */
-    public Procedimiento insertar(String IDProcedimiento, String Tipo, int MontoUnitario, int MontoServAdom, String DescripcionProcedimiento, int categoriacode, int idpaciente) {
+    public Procedimiento insertar(String IDProcedimiento, String Tipo, int MontoUnitario, int MontoServAdom, String DescripcionProcedimiento, int categoriacode, int idpaciente, String Nombre) {
         System.out.println(" un print del metodo inserta mi bro " + categoriacode);
         System.out.println("otro print del metodo insertar mi bro " + idpaciente);
-        String q = "INSERT INTO Procedimiento VALUES(  ' " + IDProcedimiento +  "   '  ,   '  " + Tipo +   "  '  ,  " + MontoUnitario + " ,  " + MontoServAdom + " ,  '   " + DescripcionProcedimiento + "  '   ,  " + categoriacode + "  ,  " +  idpaciente + " )";
+        String q = "INSERT INTO Procedimiento VALUES(  ' " + IDProcedimiento +  "   '  ,   '  " + Tipo +   "  '  ,  " + MontoUnitario + " ,  " + MontoServAdom + " ,  '   " + DescripcionProcedimiento + "  '   ,  " + categoriacode + "  ,  " +  idpaciente + ",  '"+ Nombre +"')";
         if (new Database().actualizar(q) > 0){
-            return new Procedimiento(IDProcedimiento, Tipo, MontoUnitario, MontoServAdom, DescripcionProcedimiento, categoriacode,idpaciente);
+            return new Procedimiento(IDProcedimiento, Tipo, MontoUnitario, MontoServAdom, DescripcionProcedimiento, categoriacode,idpaciente, Nombre);
         }
         return null;     
     }

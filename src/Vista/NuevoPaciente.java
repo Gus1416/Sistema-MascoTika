@@ -106,9 +106,9 @@ public class NuevoPaciente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(35, 35, 35)
                 .addComponent(jButton1)
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -124,12 +124,12 @@ public class NuevoPaciente extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         int randomnum = ThreadLocalRandom.current().nextInt(01, 98 + 1);
-        String IDPaciente = "Paciente" + randomnum;
+        int IDPaciente = randomnum;
         String Raza = jTextField2.getText();
         String Nombre = jTextField3.getText();
         String Edad = jTextField4.getText();
 
-        if (IDPaciente.equals("") || Raza.equals("") || Nombre.equals("") || Edad.equals("")) {
+        if (Raza.equals("") || Nombre.equals("") || Edad.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Todos los campos son obligatorios");
             return;
         }
@@ -138,7 +138,7 @@ public class NuevoPaciente extends javax.swing.JInternalFrame {
         // System.out.println("Esta es la edad" + Edad);
         // System.out.println("Esta es la raza del paciente" + Raza);
         // System.out.println("Esta es el nombre del paciente" + Nombre);
-        Paciente paciente = new PacienteDAO().insertar(Integer.parseInt(IDPaciente), Raza, Nombre, Integer.parseInt(Edad));
+        Paciente paciente = new PacienteDAO().insertar(IDPaciente, Raza, Nombre, Integer.parseInt(Edad));
         if (paciente == null) {
             JOptionPane.showMessageDialog(rootPane, "No se pudo registrar el  paciente :( ");
             return;

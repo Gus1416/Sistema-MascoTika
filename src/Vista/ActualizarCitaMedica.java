@@ -13,6 +13,8 @@ import Modelo.FacturaData;
 import Modelo.PDF;
 import Modelo.Persona;
 import Modelo.SendEmail;
+import Modelo.Veterinario;
+import Modelo.VeterinarioDAO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +33,8 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
     private int Paciente;
     private int MontoUnitario;
     private int MontoADomicilio;
+    private String IDVet;
+    private String Descripcion;
     
     
     public ActualizarCitaMedica() {
@@ -55,6 +59,7 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
                     (String)registro.get("Tipo"), 
                     (String)registro.get("NombreProcedimiento"), 
                     (String)registro.get("IDVet"),
+                    (String)registro.get("Descripcion"),
                     (int)registro.get("IDPaciente"), 
                     (int)registro.get("MontoUnitario"), 
                      (int)registro.get("MontoServAdom"));
@@ -66,6 +71,7 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
                     Paciente=factura.getPaciente();
                     MontoUnitario=factura.getMontoUnitario();
                     MontoADomicilio=factura.getMontoADomicilio();
+                    Descripcion=factura.getDescripcion();
           
         }        
          return search  ;     
@@ -94,6 +100,29 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
         
         return personas;
     }
+   
+  /* public String ConsultarIDVet(String NombreUsuario){
+       System.out.println(NombreUsuario);
+        List<Veterinario> vet = new VeterinarioDAO().ObtenerIDVet(NombreUsuario);
+        this.IDVet = vet.get(0).toString();
+        System.out.println(IDVet + "Del metodo");
+        return IDVet;
+    }*/
+   public List ObtenerIDVet(String NombreUsuario) {
+        String q = "SELECT IDVet FROM Persona, Veterinario"
+                + " WHERE Persona.Cedula = Veterinario.Cedula"
+                + " AND Persona.NombreUsuario='"+NombreUsuario+"'";
+        List<Map> registros = new Database().ejecutar(q);
+        List<Veterinario> veterinarios = new ArrayList();
+        for (Map registro : registros){
+            Veterinario veterinario = new Veterinario(
+                    (String)registro.get("IDVet")
+            );
+            veterinarios.add(veterinario);
+            IDVet = veterinario.getIDVet();
+        }
+        return veterinarios;
+    }
     
 
     
@@ -114,6 +143,8 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -149,32 +180,45 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel6.setText("Calificación");
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(28, 28, 28)
-                            .addComponent(jTextField4))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(70, 70, 70)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(29, 29, 29)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(75, 75, 75)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(28, 28, 28)
+                                .addComponent(jTextField4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(70, 70, 70)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(44, 44, 44)
+                        .addComponent(jTextField5)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -198,9 +242,17 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(23, 23, 23))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jButton1)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -213,6 +265,11 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
         String Fecha = jTextField2.getText();
         String Estado = jTextField3.getText();
         String CedulaCliente = jTextField4.getText();
+        
+        
+        
+        System.out.println(IDVet);
+        int Calificacion = Integer.parseInt(jTextField5.getText());
         
         System.out.println(IDCitaMed);
         System.out.println(Fecha);
@@ -229,16 +286,11 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
         
         if(Estado.equals("Asignada")){
            PDF facturar = new PDF();
-           facturar.Facturar(Nombre, Apellido, Procedimiento, Categoria, Veterinario, Paciente, MontoUnitario, MontoADomicilio);
+           facturar.Facturar(Nombre, Apellido, Procedimiento, Categoria, Veterinario, Descripcion, Paciente, MontoUnitario, MontoADomicilio);
             
             int citamed = new CitaMedicaDAO().actualizar(IDCitaMed, Fecha, Estado,Integer.parseInt(CedulaCliente));   
             JOptionPane.showMessageDialog(rootPane, "Informacion de la cita medica con ID : "+IDCitaMed+" actualizada");    
          
-            
-            // int Ced =  this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getCedula();
-           // String name = this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getNombre();
-            //String apellido= this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getApellido();
-           // String correo =   this.obtenerRegistros(Integer.parseInt(CedulaCliente)).getEmail();
             
             
            
@@ -246,6 +298,12 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
             mail.EnvioMail(Email, Nombre, Apellido, Fecha);
             JOptionPane.showMessageDialog(rootPane, "Informacion de la cita medica con ID : "+IDCitaMed+" actualizada");
         
+        }
+        
+        if (Estado.equals("Realizada")){
+            this.ObtenerIDVet(Login.nombreUsuario);
+            int citamed = new CitaMedicaDAO().actualizar(IDCitaMed, Fecha, Estado,Integer.parseInt(CedulaCliente));
+            int calificacion = new VeterinarioDAO().actualizarCalificacion(IDVet, Calificacion);
         }
         
         // Por si el mae le pone algun estado distinto
@@ -262,23 +320,7 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
        jTextField3.setText("");
       jTextField4.setText("");
        this.setVisible(false);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+               
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -290,6 +332,10 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -298,9 +344,11 @@ public class ActualizarCitaMedica extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

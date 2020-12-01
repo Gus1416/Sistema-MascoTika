@@ -145,7 +145,7 @@ private int IDPaciente;
            JOptionPane.showMessageDialog(rootPane, "No se pudo actualizar la informacion");
            return; 
         }
-        JOptionPane.showMessageDialog(rootPane, "Informacion del veterinario cedula "+IDPaciente+" actualizada");
+        JOptionPane.showMessageDialog(rootPane, "Informacion del paciente "+IDPaciente+" actualizada");
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");

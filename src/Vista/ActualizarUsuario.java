@@ -34,8 +34,6 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -46,8 +44,6 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Modificar Usuario");
-
-        jLabel2.setText("Contraseña");
 
         jLabel3.setText("Rol");
 
@@ -67,29 +63,21 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,21 +85,19 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String NombreUsuario = this.NombreUsuario;
-        String Contraseña = jTextField2.getText();
         String Rol = jTextField3.getText();
         
-        if(Contraseña.equals("") || Rol.equals("")){
+        if(Rol.equals("")){
             JOptionPane.showMessageDialog(rootPane, "Todos los campos son obligatorios");
             return;
         }
-        int usuario = new UsuarioDAO().actualizar(NombreUsuario, Contraseña, Rol);
+        int usuario = new UsuarioDAO().actualizar(NombreUsuario, Rol);
         if (usuario == 0){
            JOptionPane.showMessageDialog(rootPane, "No se pudo actualizar la informacion");
            return; 
         }
-        JOptionPane.showMessageDialog(rootPane, "Informacion del veterinario cedula "+NombreUsuario+" acutalizada");
+        JOptionPane.showMessageDialog(rootPane, "Informacion del usuario "+NombreUsuario+" acutalizada");
         //jTextField1.setText("");
-        jTextField2.setText("");
         jTextField3.setText("");
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -119,9 +105,7 @@ public class ActualizarUsuario extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

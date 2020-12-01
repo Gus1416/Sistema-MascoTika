@@ -34,17 +34,13 @@ public class UsuarioDAO {
         return null;     // si no se insert el registro devuelve null
     }
     
-    public int actualizar(String NombreUsuario,String Contraseña, String Rol){
-        String q= " UPDATE Usuario SET Contraseña='"
-               + Contraseña + "', Rol='"
-                + Rol + " ' WHERE NombreUsuario="+"'"+NombreUsuario+"'";     
+    public int actualizar(String NombreUsuario, String Rol){
+        String q= " UPDATE Usuario SET Rol='"
+                + Rol + "' WHERE NombreUsuario="+"'"+NombreUsuario+"'";     
         return new Database().actualizar(q);    
     }
        
     public Usuario obtenerRegistro(String Rol, String NombreUsuario, String Password, String key) {             /// ACA TENGO QUE DESENCRIPTAR
-        System.out.println(Rol);
-        System.out.println(NombreUsuario);
-        System.out.println(Password);
         String q = "SELECT NombreUsuario, Rol, CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('"+ key +"',Contraseña))"
                 + " FROM Usuario"
                 + " WHERE NombreUsuario = '"+ NombreUsuario +"'"
@@ -75,8 +71,10 @@ public class UsuarioDAO {
         return usuarios;  
     }
        
-     public List obtenerRegistrosUsuario(String NombreUsuario){                               // traerse todos los procedimientos segun su tipo
-         String q = "SELECT * FROM Usuario WHERE NombreUsuario='"
+     public List obtenerRegistrosUsuario(String NombreUsuario, String key){                               // traerse todos los procedimientos segun su tipo
+         String q = "SELECT NombreUsuario, Rol, CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('"+ key +"',Contraseña)) "
+                 + " FROM Usuario "
+                 + " WHERE NombreUsuario='"
                  + NombreUsuario + "'" ;
         List <Map>  registros = new Database().ejecutar(q);  
         List <Usuario> usuarios = new ArrayList();
@@ -88,8 +86,10 @@ public class UsuarioDAO {
          }
         return usuarios;     
         }  
-     public List obtenerRegistrosRol(String Rol){                               // traerse todos los procedimientos segun su tipo
-         String q = "SELECT * FROM Usuario WHERE Rol='"
+     public List obtenerRegistrosRol(String Rol, String key){                               // traerse todos los procedimientos segun su tipo
+         String q = "SELECT NombreUsuario, Rol, CONVERT(VARCHAR(MAX), DECRYPTBYPASSPHRASE('"+ key +"',Contraseña)) "
+                 + " FROM Usuario "
+                 + " WHERE Rol='"
                  + Rol + "'" ;
         List <Map>  registros = new Database().ejecutar(q);  
         List <Usuario> usuarios = new ArrayList();

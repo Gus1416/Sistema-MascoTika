@@ -12,24 +12,21 @@ public class FacturaData {
    private  int Paciente;
    private  int MontoUnitario;
    private  int MontoADomicilio;
+   private String Descripcion;
 
     public FacturaData() {
     }
 
    
-    public FacturaData(String Procedimiento, String Categoria, String Veterinario, int Paciente, int MontoUnitario, int MontoADomicilio) {
+    public FacturaData(String Procedimiento, String Categoria, String Veterinario, String Descripcion, int Paciente, int MontoUnitario, int MontoADomicilio) {
         this.Procedimiento = Procedimiento;
         this.Categoria = Categoria;
         this.Veterinario = Veterinario;
         this.Paciente = Paciente;
         this.MontoUnitario = MontoUnitario;
         this.MontoADomicilio = MontoADomicilio;
+        this.Descripcion = Descripcion;
     }
-
-    
-
-   
-   
    
     public String getCliente() {
         return Cliente;
@@ -85,6 +82,20 @@ public class FacturaData {
 
     public void setMontoADomicilio(int MontoADomicilio) {
         this.MontoADomicilio = MontoADomicilio;
+    }
+
+    /**
+     * @return the Descripcion
+     */
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    /**
+     * @param Descripcion the Descripcion to set
+     */
+    public void setDescripcion(String Descripcion) {
+        this.Descripcion = Descripcion;
     }
    
    

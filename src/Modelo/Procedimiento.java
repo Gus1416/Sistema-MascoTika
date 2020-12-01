@@ -12,6 +12,19 @@ public class Procedimiento {
     private String DescripcionProcedimiento;
     private int CodigoCategoria;
     private int IDPaciente;
+    private String Nombre;
+
+    public Procedimiento(String NombreProcedimiento, String IDProcedimiento, String Tipo, int MontoUnitario, int MontoServAdom, String DescripcionProcedimiento, int CodigoCategoria, int IDPaciente, String Nombre) {
+        this.NombreProcedimiento = NombreProcedimiento;
+        this.IDProcedimiento = IDProcedimiento;
+        this.Tipo = Tipo;
+        this.MontoUnitario = MontoUnitario;
+        this.MontoServAdom = MontoServAdom;
+        this.DescripcionProcedimiento = DescripcionProcedimiento;
+        this.CodigoCategoria = CodigoCategoria;
+        this.IDPaciente = IDPaciente;
+        this.Nombre = Nombre;
+    }
 
     public Procedimiento() {
     }
@@ -26,6 +39,8 @@ public class Procedimiento {
         this.IDPaciente=IDPaciente;
     }
 
+    
+    
     public Procedimiento(String NombreProcedimiento, String IDProcedimiento, String Tipo, int MontoUnitario, int MontoServAdom, String DescripcionProcedimiento) {
         this.NombreProcedimiento = NombreProcedimiento;
         this.IDProcedimiento = IDProcedimiento;
@@ -39,6 +54,10 @@ public class Procedimiento {
     
     public Procedimiento(String Tipo) {
         this.Tipo = Tipo;  
+    }
+
+    Procedimiento(String IDProcedimiento, String Tipo, int MontoUnitario, int MontoServAdom, String DescripcionProcedimiento, int categoriacode, int idpaciente, String Nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -151,6 +170,20 @@ public class Procedimiento {
      */
     public void setNombreProcedimiento(String NombreProcedimiento) {
         this.NombreProcedimiento = NombreProcedimiento;
+    }
+
+    /**
+     * @return the Nombre
+     */
+    public String getNombre() {
+        return Nombre;
+    }
+
+    /**
+     * @param Nombre the Nombre to set
+     */
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
     
     
